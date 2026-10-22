@@ -169,3 +169,55 @@ test("uncaught worker exceptions never reach protocol or stderr", async (t) => {
   await new Promise((resolve) => child.on("exit", resolve));
   assert.equal(stderr, "");
 });
+
+test("real worker dispatches the pinned search transcript and rejects duplicate delivery", async (t) => {
+  const { frames } = JSON.parse(
+    await readFile(new URL("./host-contract/protocol.json", import.meta.url)),
+  );
+  const child = spawn(
+    process.execPath,
+    [new URL("../src/worker.mjs", import.meta.url).pathname],
+    { stdio: ["pipe", "pipe", "pipe"] },
+  );
+  t.after(() => child.kill());
+  const messages = [];
+  let buffer = "";
+  let stderr = "";
+  child.stderr.on("data", (chunk) => {
+    stderr += chunk;
+  });
+  const send = (message) => child.stdin.write(JSON.stringify(message) + "\n");
+  await new Promise((resolve, reject) => {
+    const timeout = setTimeout(
+      () => reject(new Error("Worker timed out")),
+      5000,
+    );
+    child.once("error", reject);
+    child.stdout.on("data", (chunk) => {
+      buffer += chunk;
+      let end;
+      while ((end = buffer.indexOf("\n")) !== -1) {
+        const message = JSON.parse(buffer.slice(0, end));
+        buffer = buffer.slice(end + 1);
+        messages.push(message);
+        if (message.result?.apiVersion) send(frames[2].message);
+        else if (message.method === "capability") send(frames[4].message);
+        else if (message.result?.status) {
+          send(frames[2].message);
+          child.stdin.end();
+        }
+      }
+    });
+    child.once("exit", () => {
+      clearTimeout(timeout);
+      resolve();
+    });
+    send(frames[0].message);
+  });
+  assert.deepEqual(messages, [
+    frames[1].message,
+    frames[3].message,
+    frames[5].message,
+  ]);
+  assert.equal(stderr, "");
+});

@@ -1,10 +1,16 @@
 import { createProtocol } from "./protocol.mjs";
+import { createSpotifyClient } from "./spotify.mjs";
+import { dispatchTool } from "./dispatch.mjs";
 
-// Tool dispatch is supplied by the following implementation task. Fail closed.
 createProtocol({
   input: process.stdin,
   output: process.stdout,
-  invoke: async () => ({ status: "error", code: "setup_needed" }),
+  invoke: (params, context) =>
+    dispatchTool({
+      ...params,
+      client: createSpotifyClient(context),
+      signal: context.signal,
+    }),
 });
 process.on("uncaughtException", () => process.exit(1));
 process.on("unhandledRejection", () => process.exit(1));

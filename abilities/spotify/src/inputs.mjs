@@ -98,6 +98,7 @@ export function parseToolInput(tool, value) {
 export function parseSelection(value) {
   if (value === undefined) return undefined;
   if (!isRecord(value) || value.version !== 1) invalid();
+  if (value.kind === "resolution") return parseResolution(value);
   if (
     value.kind === "item" &&
     exactKeys(value, ["version", "kind", "type", "uri"]) &&
@@ -124,4 +125,81 @@ export function parseSelection(value) {
   )
     return structuredClone(value);
   invalid();
+}
+
+function parseResolution(value) {
+  if (
+    !exactKeys(value, ["version", "kind", "tool", "input", "targets"]) ||
+    ![
+      "play",
+      "pause",
+      "skip",
+      "queue",
+      "volume",
+      "create_playlist",
+      "add_to_playlist",
+      "save_tracks",
+    ].includes(value.tool)
+  )
+    invalid();
+  parseToolInput(value.tool, value.input);
+  const t = value.targets;
+  if (
+    !exactKeys(
+      t,
+      [],
+      ["trackUris", "contextUri", "playlistUri", "deviceId", "playlistOffset"],
+    )
+  )
+    invalid();
+  if (
+    t.trackUris !== undefined &&
+    (!Array.isArray(t.trackUris) ||
+      t.trackUris.length < 1 ||
+      t.trackUris.length > 40 ||
+      !t.trackUris.every((uri) => spotifyUri(uri, ["track"])))
+  )
+    invalid();
+  if (
+    t.contextUri !== undefined &&
+    (!spotifyUri(t.contextUri, ["album", "artist", "playlist"]) ||
+      value.tool !== "play")
+  )
+    invalid();
+  if (t.trackUris && t.contextUri) invalid();
+  if (
+    t.playlistUri !== undefined &&
+    (!spotifyUri(t.playlistUri, ["playlist"]) ||
+      value.tool !== "add_to_playlist")
+  )
+    invalid();
+  if (
+    t.deviceId !== undefined &&
+    (typeof t.deviceId !== "string" ||
+      !t.deviceId.length ||
+      t.deviceId.length > 128 ||
+      !["play", "pause", "skip", "queue", "volume"].includes(value.tool))
+  )
+    invalid();
+  if (
+    t.playlistOffset !== undefined &&
+    (!Number.isInteger(t.playlistOffset) ||
+      t.playlistOffset < 0 ||
+      t.playlistOffset > 10000 ||
+      value.tool !== "add_to_playlist")
+  )
+    invalid();
+  if (
+    t.trackUris &&
+    ![
+      "play",
+      "queue",
+      "create_playlist",
+      "add_to_playlist",
+      "save_tracks",
+    ].includes(value.tool)
+  )
+    invalid();
+  if (value.tool === "queue" && t.trackUris?.length > 1) invalid();
+  return structuredClone(value);
 }
