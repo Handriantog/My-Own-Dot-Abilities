@@ -124,7 +124,7 @@ test("limits broker routes, request shapes and private playlist creation", async
 test("pins public host schema and wire fixtures without a host runtime dependency", async () => {
   const lock = await json("test/host-contract/contract-lock.json");
   assert.equal(lock.apiVersion, 1);
-  assert.equal(lock.sourceCommit, "1cf89f4087a1f0559cd784199fc3fd327aec4a1a");
+  assert.equal(lock.sourceCommit, "7b06a6cbafe9b526053f59c17969c12b6499e2d6");
   for (const [name, hash] of Object.entries(lock.files)) {
     assert.match(name, /^(manifest\.schema\.json|protocol\.json)$/);
     const bytes = await readFile(new URL("test/host-contract/" + name, root));
@@ -141,4 +141,28 @@ test("pins public host schema and wire fixtures without a host runtime dependenc
     "optionalDependencies",
   ])
     assert.deepEqual(pkg[field] || {}, {});
+});
+
+test("restricts Spotify to typed commands and embeds exact pre-install provider notices", async () => {
+  const manifest = await json("ability.json");
+  assert(
+    manifest.tools.every(
+      (tool) => JSON.stringify(tool.channels) === '["text"]',
+    ),
+  );
+  assert.deepEqual(
+    manifest.notices.map(({ id, required }) => ({ id, required })),
+    [
+      { id: "terms", required: true },
+      { id: "privacy", required: false },
+    ],
+  );
+  assert.equal(
+    manifest.notices[0].text,
+    await readFile(new URL("TERMS.md", root), "utf8"),
+  );
+  assert.equal(
+    manifest.notices[1].text,
+    await readFile(new URL("PRIVACY.md", root), "utf8"),
+  );
 });

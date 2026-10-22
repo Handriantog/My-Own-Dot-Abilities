@@ -50,6 +50,10 @@ def validate(root=ROOT):
     require(manifest["helpers"] == [], "No helpers approved")
     require(len(manifest["tools"]) == 11 and {t["id"] for t in manifest["tools"]} == TOOLS, "Wrong tools")
     require(all(t["visibility"] == "owner-only" and t["output"] == {"type": "null"} for t in manifest["tools"]), "Provider data must be owner-only")
+    require(all(t.get("channels") == ["text"] for t in manifest["tools"]), "Spotify voice is not permitted")
+    notices = manifest["notices"]
+    require([(n["id"], n["required"]) for n in notices] == [("terms", True), ("privacy", False)], "Wrong provider notices")
+    require(notices[0]["text"] == (root / "TERMS.md").read_text() and notices[1]["text"] == (root / "PRIVACY.md").read_text(), "Provider notice drift")
     permissions = manifest["permissions"]
     require(len(permissions) == 17 and len({p["id"] for p in permissions}) == 17, "Wrong permission inventory")
     oauth = [p for p in permissions if p["kind"] == "oauth"]

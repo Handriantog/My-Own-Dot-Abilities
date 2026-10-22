@@ -1,5 +1,13 @@
 # Spotify Ability Implementation Plan
 
+> October 23 implementation amendment: Spotify Developer Policy III.3 prohibits
+> third-party voice control. Spotify tools are typed-only; acceptance must prove
+> absence/denial in direct and delegated voice, while generic Ability voice
+> support remains. Developer Terms V.11–12 also require exact pre-install
+> privacy/terms display and explicit agreement. The host now supplies optional
+> tool channels and digest-bound notices. These amendments supersede voice
+> enablement and missing notice requirements below. See the execution ledger.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Ship a sealed Spotify Ability that a selected Dot can use for search, playback, private playlists, and saved songs through chat or voice.

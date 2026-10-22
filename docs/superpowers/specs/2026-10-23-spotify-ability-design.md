@@ -1,5 +1,13 @@
 # Spotify Ability design
 
+> October 23 implementation amendment: Spotify Developer Policy III.3 prohibits
+> third-party voice control. Spotify tools are typed-only; acceptance must prove
+> absence/denial in direct and delegated voice, while generic Ability voice
+> support remains. Developer Terms V.11–12 also require exact pre-install
+> privacy/terms display and explicit agreement. The host now supplies optional
+> tool channels and digest-bound notices. These amendments supersede voice
+> enablement and missing notice requirements below. See the execution ledger.
+
 Status: approved by the owner on October 23, 2026; depends on the unimplemented Dot Ability
 platform described in My-Own-Dots, `docs/desktop/abilities-design.md`.
 

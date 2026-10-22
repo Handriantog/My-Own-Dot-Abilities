@@ -11,9 +11,7 @@
   },
   "version": "0.1.0",
   "license": "MIT",
-  "platforms": [
-    "darwin-arm64"
-  ],
+  "platforms": ["darwin-arm64"],
   "entrypoint": {
     "runtime": "javascript",
     "path": "src/worker.mjs"
@@ -49,12 +47,7 @@
               "type": "string",
               "minLength": 1,
               "maxLength": 8,
-              "enum": [
-                "track",
-                "artist",
-                "album",
-                "playlist"
-              ]
+              "enum": ["track", "artist", "album", "playlist"]
             },
             "minItems": 1,
             "maxItems": 4
@@ -65,15 +58,14 @@
             "maximum": 10
           }
         },
-        "required": [
-          "query"
-        ],
+        "required": ["query"],
         "additionalProperties": false
       },
       "output": {
         "type": "null"
       },
-      "visibility": "owner-only"
+      "visibility": "owner-only",
+      "channels": ["text"]
     },
     {
       "id": "playback",
@@ -87,7 +79,8 @@
       "output": {
         "type": "null"
       },
-      "visibility": "owner-only"
+      "visibility": "owner-only",
+      "channels": ["text"]
     },
     {
       "id": "play",
@@ -132,7 +125,8 @@
       "output": {
         "type": "null"
       },
-      "visibility": "owner-only"
+      "visibility": "owner-only",
+      "channels": ["text"]
     },
     {
       "id": "pause",
@@ -152,7 +146,8 @@
       "output": {
         "type": "null"
       },
-      "visibility": "owner-only"
+      "visibility": "owner-only",
+      "channels": ["text"]
     },
     {
       "id": "skip",
@@ -164,10 +159,7 @@
             "type": "string",
             "minLength": 1,
             "maxLength": 8,
-            "enum": [
-              "next",
-              "previous"
-            ]
+            "enum": ["next", "previous"]
           },
           "device": {
             "type": "string",
@@ -181,7 +173,8 @@
       "output": {
         "type": "null"
       },
-      "visibility": "owner-only"
+      "visibility": "owner-only",
+      "channels": ["text"]
     },
     {
       "id": "queue",
@@ -216,7 +209,8 @@
       "output": {
         "type": "null"
       },
-      "visibility": "owner-only"
+      "visibility": "owner-only",
+      "channels": ["text"]
     },
     {
       "id": "volume",
@@ -235,15 +229,14 @@
             "maxLength": 200
           }
         },
-        "required": [
-          "percent"
-        ],
+        "required": ["percent"],
         "additionalProperties": false
       },
       "output": {
         "type": "null"
       },
-      "visibility": "owner-only"
+      "visibility": "owner-only",
+      "channels": ["text"]
     },
     {
       "id": "playlists",
@@ -263,7 +256,8 @@
       "output": {
         "type": "null"
       },
-      "visibility": "owner-only"
+      "visibility": "owner-only",
+      "channels": ["text"]
     },
     {
       "id": "create_playlist",
@@ -302,15 +296,14 @@
             "maxItems": 40
           }
         },
-        "required": [
-          "name"
-        ],
+        "required": ["name"],
         "additionalProperties": false
       },
       "output": {
         "type": "null"
       },
-      "visibility": "owner-only"
+      "visibility": "owner-only",
+      "channels": ["text"]
     },
     {
       "id": "add_to_playlist",
@@ -355,7 +348,8 @@
       "output": {
         "type": "null"
       },
-      "visibility": "owner-only"
+      "visibility": "owner-only",
+      "channels": ["text"]
     },
     {
       "id": "save_tracks",
@@ -390,7 +384,8 @@
       "output": {
         "type": "null"
       },
-      "visibility": "owner-only"
+      "visibility": "owner-only",
+      "channels": ["text"]
     }
   ],
   "permissions": [
@@ -417,10 +412,7 @@
       "purpose": "Spotify search.",
       "origin": "https://api.spotify.com",
       "method": "GET",
-      "path": [
-        "v1",
-        "search"
-      ],
+      "path": ["v1", "search"],
       "pathValues": {
         "type": "object",
         "properties": {},
@@ -446,11 +438,7 @@
             "maximum": 10
           }
         },
-        "required": [
-          "q",
-          "type",
-          "limit"
-        ],
+        "required": ["q", "type", "limit"],
         "additionalProperties": false
       },
       "account": "spotify-account"
@@ -461,11 +449,7 @@
       "purpose": "Spotify playback.",
       "origin": "https://api.spotify.com",
       "method": "GET",
-      "path": [
-        "v1",
-        "me",
-        "player"
-      ],
+      "path": ["v1", "me", "player"],
       "pathValues": {
         "type": "object",
         "properties": {},
@@ -486,12 +470,7 @@
       "purpose": "Spotify devices.",
       "origin": "https://api.spotify.com",
       "method": "GET",
-      "path": [
-        "v1",
-        "me",
-        "player",
-        "devices"
-      ],
+      "path": ["v1", "me", "player", "devices"],
       "pathValues": {
         "type": "object",
         "properties": {},
@@ -512,12 +491,7 @@
       "purpose": "Spotify currently playing.",
       "origin": "https://api.spotify.com",
       "method": "GET",
-      "path": [
-        "v1",
-        "me",
-        "player",
-        "currently-playing"
-      ],
+      "path": ["v1", "me", "player", "currently-playing"],
       "pathValues": {
         "type": "object",
         "properties": {},
@@ -538,12 +512,7 @@
       "purpose": "Spotify play.",
       "origin": "https://api.spotify.com",
       "method": "PUT",
-      "path": [
-        "v1",
-        "me",
-        "player",
-        "play"
-      ],
+      "path": ["v1", "me", "player", "play"],
       "pathValues": {
         "type": "object",
         "properties": {},
@@ -559,9 +528,7 @@
             "maxLength": 128
           }
         },
-        "required": [
-          "device_id"
-        ],
+        "required": ["device_id"],
         "additionalProperties": false
       },
       "account": "spotify-account",
@@ -594,11 +561,7 @@
       "purpose": "Spotify transfer.",
       "origin": "https://api.spotify.com",
       "method": "PUT",
-      "path": [
-        "v1",
-        "me",
-        "player"
-      ],
+      "path": ["v1", "me", "player"],
       "pathValues": {
         "type": "object",
         "properties": {},
@@ -627,15 +590,10 @@
           },
           "play": {
             "type": "boolean",
-            "enum": [
-              false
-            ]
+            "enum": [false]
           }
         },
-        "required": [
-          "device_ids",
-          "play"
-        ],
+        "required": ["device_ids", "play"],
         "additionalProperties": false
       }
     },
@@ -645,12 +603,7 @@
       "purpose": "Spotify pause.",
       "origin": "https://api.spotify.com",
       "method": "PUT",
-      "path": [
-        "v1",
-        "me",
-        "player",
-        "pause"
-      ],
+      "path": ["v1", "me", "player", "pause"],
       "pathValues": {
         "type": "object",
         "properties": {},
@@ -666,9 +619,7 @@
             "maxLength": 128
           }
         },
-        "required": [
-          "device_id"
-        ],
+        "required": ["device_id"],
         "additionalProperties": false
       },
       "account": "spotify-account"
@@ -679,12 +630,7 @@
       "purpose": "Spotify next.",
       "origin": "https://api.spotify.com",
       "method": "POST",
-      "path": [
-        "v1",
-        "me",
-        "player",
-        "next"
-      ],
+      "path": ["v1", "me", "player", "next"],
       "pathValues": {
         "type": "object",
         "properties": {},
@@ -700,9 +646,7 @@
             "maxLength": 128
           }
         },
-        "required": [
-          "device_id"
-        ],
+        "required": ["device_id"],
         "additionalProperties": false
       },
       "account": "spotify-account"
@@ -713,12 +657,7 @@
       "purpose": "Spotify previous.",
       "origin": "https://api.spotify.com",
       "method": "POST",
-      "path": [
-        "v1",
-        "me",
-        "player",
-        "previous"
-      ],
+      "path": ["v1", "me", "player", "previous"],
       "pathValues": {
         "type": "object",
         "properties": {},
@@ -734,9 +673,7 @@
             "maxLength": 128
           }
         },
-        "required": [
-          "device_id"
-        ],
+        "required": ["device_id"],
         "additionalProperties": false
       },
       "account": "spotify-account"
@@ -747,12 +684,7 @@
       "purpose": "Spotify queue.",
       "origin": "https://api.spotify.com",
       "method": "POST",
-      "path": [
-        "v1",
-        "me",
-        "player",
-        "queue"
-      ],
+      "path": ["v1", "me", "player", "queue"],
       "pathValues": {
         "type": "object",
         "properties": {},
@@ -773,10 +705,7 @@
             "maxLength": 100
           }
         },
-        "required": [
-          "device_id",
-          "uri"
-        ],
+        "required": ["device_id", "uri"],
         "additionalProperties": false
       },
       "account": "spotify-account"
@@ -787,12 +716,7 @@
       "purpose": "Spotify volume.",
       "origin": "https://api.spotify.com",
       "method": "PUT",
-      "path": [
-        "v1",
-        "me",
-        "player",
-        "volume"
-      ],
+      "path": ["v1", "me", "player", "volume"],
       "pathValues": {
         "type": "object",
         "properties": {},
@@ -813,10 +737,7 @@
             "maximum": 100
           }
         },
-        "required": [
-          "device_id",
-          "volume_percent"
-        ],
+        "required": ["device_id", "volume_percent"],
         "additionalProperties": false
       },
       "account": "spotify-account"
@@ -827,11 +748,7 @@
       "purpose": "Spotify playlists.",
       "origin": "https://api.spotify.com",
       "method": "GET",
-      "path": [
-        "v1",
-        "me",
-        "playlists"
-      ],
+      "path": ["v1", "me", "playlists"],
       "pathValues": {
         "type": "object",
         "properties": {},
@@ -852,10 +769,7 @@
             "maximum": 10000
           }
         },
-        "required": [
-          "limit",
-          "offset"
-        ],
+        "required": ["limit", "offset"],
         "additionalProperties": false
       },
       "account": "spotify-account"
@@ -882,9 +796,7 @@
             "maxLength": 22
           }
         },
-        "required": [
-          "playlistId"
-        ],
+        "required": ["playlistId"],
         "additionalProperties": false
       },
       "query": {
@@ -901,11 +813,7 @@
       "purpose": "Spotify create playlist.",
       "origin": "https://api.spotify.com",
       "method": "POST",
-      "path": [
-        "v1",
-        "me",
-        "playlists"
-      ],
+      "path": ["v1", "me", "playlists"],
       "pathValues": {
         "type": "object",
         "properties": {},
@@ -934,22 +842,14 @@
           },
           "public": {
             "type": "boolean",
-            "enum": [
-              false
-            ]
+            "enum": [false]
           },
           "collaborative": {
             "type": "boolean",
-            "enum": [
-              false
-            ]
+            "enum": [false]
           }
         },
-        "required": [
-          "name",
-          "public",
-          "collaborative"
-        ],
+        "required": ["name", "public", "collaborative"],
         "additionalProperties": false
       }
     },
@@ -976,9 +876,7 @@
             "maxLength": 22
           }
         },
-        "required": [
-          "playlistId"
-        ],
+        "required": ["playlistId"],
         "additionalProperties": false
       },
       "query": {
@@ -1002,9 +900,7 @@
             "maxItems": 40
           }
         },
-        "required": [
-          "uris"
-        ],
+        "required": ["uris"],
         "additionalProperties": false
       }
     },
@@ -1014,11 +910,7 @@
       "purpose": "Save items to your Spotify library; this worker offers track-only tools.",
       "origin": "https://api.spotify.com",
       "method": "PUT",
-      "path": [
-        "v1",
-        "me",
-        "library"
-      ],
+      "path": ["v1", "me", "library"],
       "pathValues": {
         "type": "object",
         "properties": {},
@@ -1034,12 +926,24 @@
             "maxLength": 4000
           }
         },
-        "required": [
-          "uris"
-        ],
+        "required": ["uris"],
         "additionalProperties": false
       },
       "account": "spotify-account"
+    }
+  ],
+  "notices": [
+    {
+      "id": "terms",
+      "title": "Spotify Ability terms",
+      "text": "# Spotify Ability terms and provider notices\n\nDevelopment version 0.1.0, October 23, 2026.\n\nThis independent, personal-use integration is provided by this repository's\nmaintainer, not Spotify. It is not sponsored, certified or endorsed by Spotify.\nSpotify names, marks, content and services belong to their respective owners.\nResults identify Spotify as their source and link back to the corresponding item.\nThe Ability does not distribute music, download audio or grant rights to content.\n\nOriginal code is licensed under [MIT](LICENSE), including its warranty disclaimer\nand limitation of liability. That source license does not license Spotify's\nservice, content or marks. Your Spotify account and personal developer app remain\nsubject to Spotify's [user terms](https://www.spotify.com/legal/end-user-agreement/),\n[Developer Terms](https://developer.spotify.com/terms), and\n[Developer Policy](https://developer.spotify.com/policy).\n\nUse only an account and developer app you are authorized to connect. Review the\nrequested permissions before installation and browser consent. Actions you request\ncan change playback, playlists and saved songs. Check Spotify after an uncertain\nresult before requesting the action again. Access may be limited or withdrawn by\nSpotify, and features may stop working as its API or account eligibility changes.\n\nThe maintainer is responsible for this Ability; Spotify has no responsibility for\nits support. The maintainer makes no warranties on Spotify's behalf. To the extent\npermitted by law, all implied warranties concerning the Spotify Platform, Service\nand Content are disclaimed, including merchantability, fitness for a particular\npurpose and non-infringement. Do not modify or create derivative works of the\nSpotify Platform, Service or Content, or decompile, reverse-engineer or disassemble\nthem to human-perceivable form, to the extent those restrictions are lawful. These\nprovider restrictions do not change the MIT rights in this Ability's original code. To the extent permitted by applicable law, Spotify disclaims warranties\nrelating to the Ability and is not liable for loss or damage arising from its use.\nSpotify is an intended third-party beneficiary of these terms and the privacy\nnotice, and may directly enforce these terms. Nothing here excludes rights or liabilities that cannot lawfully\nbe excluded. See [PRIVACY.md](PRIVACY.md) for data use and disconnect instructions.\n\nThis version does not offer voice control, games, audio analysis, recommendations,\nAI ingestion of provider results, commercial streaming or a replacement Spotify\nplayer. Do not use the integration to manipulate listening metrics or bypass\nSpotify quotas. These notices are not a claim of Spotify approval or a guarantee\nthat every distribution model satisfies its requirements; release review remains\nthe maintainer's responsibility.\n",
+      "required": true
+    },
+    {
+      "id": "privacy",
+      "title": "Spotify Ability privacy notice",
+      "text": "# Spotify Ability privacy notice\n\nEffective for development version 0.1.0, October 23, 2026.\n\nThis Ability runs locally within My Own Dots. It requests Spotify playback/device\ninformation, search results and playlists to perform the commands you request.\nIt can control your player, create/edit private playlists and save library items;\nthis worker's library tools accept tracks only. The exact scopes and API routes\nare listed in [ability.json](ability.json) and shown before approval.\n\nDot sends your requested searches and actions to Spotify. Spotify handles these\nunder its [privacy policy](https://www.spotify.com/legal/privacy-policy/).\nGitHub serves the installation package and source. This worker has no analytics,\nadvertising, telemetry, background polling or additional service endpoint.\n\nThe host owns browser authorization and encrypted local credentials. The worker\nreceives neither tokens nor your Spotify password. Your public developer Client\nID is stored as per-Dot configuration. Changing it requires a new connection.\nCredentials are separate for each Dot and are excluded from portable backups.\n\nProvider results are local, owner-only UI data, retained in memory for at most\nten minutes and removed earlier on disconnect/revocation or host shutdown. They\nare not persisted into conversations, model prompts, summaries, memory,\nembeddings, logs, backups or AI speech input. This worker writes no provider\ncatalog or operation journal to disk. The host may persist generic invocation\nreceipts and opaque references to prevent duplicate actions; these contain no\nSpotify response metadata and cannot restore expired private results.\n\nYour own typed requests still follow Dot's configured chat/inference and storage\nbehavior. If you type a song title or playlist name, that user-authored text can\nbe sent to your selected AI provider and saved in your conversation. This notice\ndoes not promise that your own messages are private from the model you use.\n\nUse **Disconnect** in the selected Dot's Ability settings to clear its stored\nSpotify credentials and private results. Remove provider access on Spotify's\n[Apps page](https://www.spotify.com/account/apps/) to revoke the developer app too.\nDisconnecting does not delete playlists or liked songs already saved in Spotify.\nUse Spotify to change those. Disable is not the same as disconnect.\n\nFor source or privacy questions, contact the maintainer through the repository's\n[issue tracker](https://github.com/Handriantog/My-Own-Dot-Abilities/issues).\nNever include tokens, passwords or private Spotify data in an issue.\n",
+      "required": false
     }
   ]
 }
