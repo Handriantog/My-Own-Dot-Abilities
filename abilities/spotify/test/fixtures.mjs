@@ -25,3 +25,40 @@ export function broker(replies) {
     },
   };
 }
+export const IDS = {
+  track: "1".repeat(22),
+  second: "2".repeat(22),
+  playlist: "3".repeat(22),
+  album: "4".repeat(22),
+};
+export function track(overrides = {}) {
+  return {
+    type: "track",
+    id: IDS.track,
+    uri: `spotify:track:${IDS.track}`,
+    name: "Synthetic Song",
+    artists: [{ name: "Synthetic Artist" }],
+    is_playable: true,
+    ...overrides,
+  };
+}
+export function playlist(overrides = {}) {
+  return {
+    type: "playlist",
+    id: IDS.playlist,
+    uri: `spotify:playlist:${IDS.playlist}`,
+    name: "Synthetic Playlist",
+    public: false,
+    ...overrides,
+  };
+}
+export function device(overrides = {}) {
+  return {
+    id: "synthetic-device",
+    name: "Synthetic Player",
+    is_active: true,
+    is_restricted: false,
+    supports_volume: true,
+    ...overrides,
+  };
+}
