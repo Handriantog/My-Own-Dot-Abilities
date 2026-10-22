@@ -1,6 +1,6 @@
 # Spotify Ability design
 
-Status: proposed for written-spec review; depends on the unimplemented Dot Ability
+Status: approved by the owner on October 23, 2026; depends on the unimplemented Dot Ability
 platform described in My-Own-Dots, `docs/desktop/abilities-design.md`.
 
 ## Intended outcome
