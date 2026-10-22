@@ -8,7 +8,7 @@ playlists, and save songs to Liked Songs. Spotify plays the audio.
 No live account verification or public installable release is claimed.
 The first version targets typed commands on macOS 26 Apple Silicon. Spotify's
 [Developer Policy](https://developer.spotify.com/policy) prohibits third-party
-voice control; host enforcement and integration acceptance are release gates.
+voice control; the host enforces that restriction in direct and delegated voice.
 
 Follow [SETUP.md](SETUP.md) for your personal Spotify Developer app. Read
 [permissions](ability.json), [privacy](PRIVACY.md), [terms](TERMS.md), and

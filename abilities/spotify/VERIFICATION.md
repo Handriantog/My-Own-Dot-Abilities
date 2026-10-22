@@ -4,7 +4,7 @@ Updated October 23, 2026. Source implementation and synthetic checks only.
 
 - Host contract: API 1, pinned in `test/host-contract/contract-lock.json` with
   exact schema/transcript digests. Host enforcement belongs to My Own Dots.
-- Worker and packaging: 92 tests cover all eleven tools, local ambiguity,
+- Worker and packaging: 94 tests cover all eleven tools, local ambiguity,
   per-command device IDs, private playlists, partial/uncertain mutations,
   bounded protocol, cancellation, duplicate delivery and redacted failures.
 - Dependencies: no third-party runtime/build packages; Node and Python standard
@@ -31,11 +31,24 @@ and credential guards pass. The actual packaged host accepted and sealed the
 20-file development artifact through its production installer; only offline
 GitHub metadata/download transport was supplied by the check.
 
-Real-host execution acceptance, typed-only enforcement in the host, the
-host's confirmed-401 refresh behavior, pre-install terms/privacy presentation and
-acceptance, final independent review, latest-commit
-push/PR CI, native UI inspection and live account checks remain pending here.
-No real Spotify account, token, playlist or playback action has been used.
+Nine real-host integration scenarios pass using the sealed archive and production
+bundled host: per-Dot consent, required notice agreement, mock browser PKCE,
+host-encrypted credentials, all eleven tools, private choices, exact HTTP routes,
+401 refresh/revocation, expired selections, disable/re-enable/disconnect, unknown
+mutation duplicate prevention after service restart, desktop/backend disconnect,
+and preservation of a separate playback stand-in process. Actual model prompts,
+durable events, memory/compaction inputs, diagnostics and speech inputs contain
+no sentinel provider metadata or fake credentials, including provider rejection
+and partial-success paths. Spotify tools are absent from direct/delegated voice.
+
+Host-generic tests separately cover real desktop crashes/freeze, native process
+reaping, changed permissions, restore-disabled bindings and interrupted durable
+receipts. These are platform invariants, not extra live Spotify claims.
+
+Final full-suite/packaged-app checks, independent review and latest-commit push/PR
+CI are still pending. Native visual/keyboard inspection is unavailable because
+Computer Use has not been approved for Safari. No real Spotify account, token,
+playlist or playback action has been used.
 
 Before publication, verify provider eligibility, distribution terms and branding
 against the actual UI. Current owner cards show text attribution and canonical

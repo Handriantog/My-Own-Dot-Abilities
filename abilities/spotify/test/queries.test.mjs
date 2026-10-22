@@ -200,3 +200,17 @@ test("playback metadata is owner-only plaintext with valid Spotify links", async
     /^https:\/\/open.spotify.com\/track\//,
   );
 });
+
+test("an incomplete track playback response uses the approved currently-playing route", async () => {
+  const api = tools([
+    http({ is_playing: true, currently_playing_type: "track", item: null }),
+    http({ item: track() }),
+    http({ devices: [device()] }),
+  ]);
+  const result = await api.playback({});
+  assert.deepEqual(
+    api.requests.map((request) => request.ruleId),
+    ["playback", "currently-playing", "devices"],
+  );
+  assert.equal(result.owner.items[0].label, "Synthetic Song");
+});

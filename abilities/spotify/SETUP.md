@@ -28,7 +28,7 @@ See [quota modes](https://developer.spotify.com/documentation/web-api/concepts/q
    package's identity, source revision, access and storage paths before teaching it.
 5. Enter the public **Client ID** in that Dot's Spotify settings. Never enter a
    client secret, Spotify password, access token or refresh token.
-6. Select **Connect Spotify**. Review Spotify's consent in your system browser
+6. Select **Connect account**. Review Spotify's consent in your system browser
    and return to Dot. Dot handles [PKCE](https://developer.spotify.com/documentation/web-api/tutorials/code-pkce-flow)
    and credential storage. Each Dot connects separately.
 7. Open Spotify and start a player. Type a request in Dot, such as “Pause Spotify,”
@@ -46,6 +46,7 @@ that binding's credentials, pending connections and private cached results.
 To revoke the developer app's provider authorization too, remove its access on
 [your Spotify account's Apps page](https://www.spotify.com/account/apps/).
 
+Disconnect also disables the binding. Enable it before connecting again.
 Changing Client ID requires reconnecting. **Disable** stops new actions and
 workers; it is distinct from disconnecting the saved account. **Forget** removes
 that Dot's saved Ability state. Restored or moved workspaces require fresh consent

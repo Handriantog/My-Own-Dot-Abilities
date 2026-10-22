@@ -39,9 +39,14 @@ export function createQueryTools(client) {
       parseToolInput("playback", value);
       if (selection !== undefined) invalid();
       const playback = await client.request("playback");
+      let current = catalogItem(playback.body?.item);
+      if (!current && playback.body?.currently_playing_type === "track") {
+        const reply = await client.request("currently-playing");
+        current = catalogItem(reply.body?.item);
+      }
       const { body } = await client.request("devices");
       const devices = availableDevices(body);
-      const item = catalogItem(playback.body?.item);
+      const item = current;
       const active = devices.some(
         (device) => device.active && !device.restricted,
       );
