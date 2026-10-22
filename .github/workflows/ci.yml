@@ -25,6 +25,16 @@ jobs:
           git remote add origin "${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}.git"
           git fetch --no-tags --depth=1 origin "$GITHUB_SHA"
           git checkout --detach FETCH_HEAD
+      - name: Set up pinned Node for the Spotify worker
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 24.20.0
+      - name: Check Spotify manifest
+        run: python3 abilities/spotify/scripts/check_manifest.py
+      - name: Test Spotify worker and packaging
+        run: node --test abilities/spotify/test/*.test.mjs
+      - name: Build offline development artifact
+        run: python3 abilities/spotify/scripts/package.py --development --output dist/spotify-check
       - name: Validate repository
         run: python3 scripts/check_repository.py
       - name: Check whitespace

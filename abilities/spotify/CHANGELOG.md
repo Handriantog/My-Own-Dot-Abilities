@@ -1,11 +1,12 @@
-# Spotify Ability changelog
+# Changelog
 
-## Unreleased
+## Unreleased — 0.1.0 source
 
-- Pin the tested public host contract and declare eleven owner-only tools,
-  six OAuth scopes and exact HTTPS rules for private playlists and playback.
+- Add eleven owner-only search, playback, private-playlist and library tools.
+- Declare six OAuth scopes and sixteen constrained host HTTP routes.
+- Use local matching, private choices and generic model-facing outcomes.
+- Bound transport, cancellation and retries; preserve uncertain/partial actions.
+- Package a sealed dependency-free worker with setup/privacy/provider notices.
+- Target typed commands; Spotify voice control is excluded by provider policy.
 
-- Document the initial Spotify scope and account requirements.
-- Reserve an independent Ability directory and catalog entry.
-
-No installable release has been published.
+No public package or live account verification has been released.
