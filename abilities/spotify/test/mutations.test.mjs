@@ -280,17 +280,15 @@ test("playlist-name resolution handles ambiguity and continuation without creati
   assert.equal((await next.result).status, "selection_needed");
   assert.equal(next.requests[0].query.offset, 10);
 });
-for (const response of [http({}, 403), http({}, 503), new Error(SENTINEL)])
+for (const response of [http({}, 403), http({}, 503), new Error(SENTINEL), { ok: false, code: "cancelled" }])
   test("create success plus add failure preserves private playlist link and never recreates", async () => {
     const call = run("create_playlist", { name: "Test", uris: [trackUri] }, [
       http(playlist()),
       response,
     ]);
     const result = await call.result;
-    assert.equal(
-      result.status,
-      response.status === 403 ? "error" : "uncertain",
-    );
+    assert.equal(result.status, "uncertain");
+    assert.equal(Object.hasOwn(result, "code"), false);
     assert.match(result.owner.title, /created/);
     assert.equal(
       result.owner.items[0].url,
@@ -366,7 +364,8 @@ test("cancellation after a confirmed create retains its link and prevents the ad
     client,
     signal: controller.signal,
   });
-  assert.equal(result.code, "cancelled");
+  assert.equal(result.status, "uncertain");
+  assert.equal(Object.hasOwn(result, "code"), false);
   assert.equal(
     result.owner.items[0].url,
     `https://open.spotify.com/playlist/${IDS.playlist}`,

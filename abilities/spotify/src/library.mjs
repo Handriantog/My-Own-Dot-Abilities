@@ -8,7 +8,7 @@ import {
   ownerItem,
   ownerText,
 } from "./resolve.mjs";
-import { mapSpotifyFailure, SpotifyFailure } from "./errors.mjs";
+import { SpotifyFailure } from "./errors.mjs";
 
 async function choosePlaylist(client, input, targets) {
   if (targets.playlistUri || input.playlistUri)
@@ -98,10 +98,11 @@ export function createLibraryTools(client) {
             pathValues: { playlistId: playlist.id },
             body: { uris: targets.trackUris },
           });
-        } catch (error) {
-          const failure = mapSpotifyFailure(error);
+        } catch {
+          // Creation already succeeded, even if additions were definitely rejected.
+          // The model cannot read the private card; never imply safe recreation.
           return {
-            ...failure,
+            status: "uncertain",
             owner: {
               kind: "list",
               title:

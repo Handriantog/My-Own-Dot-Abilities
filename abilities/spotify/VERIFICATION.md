@@ -4,7 +4,7 @@ Updated October 23, 2026. Source implementation and synthetic checks only.
 
 - Host contract: API 1, pinned in `test/host-contract/contract-lock.json` with
   exact schema/transcript digests. Host enforcement belongs to My Own Dots.
-- Worker and packaging: 94 tests cover all eleven tools, local ambiguity,
+- Worker and packaging: 95 tests cover all eleven tools, local ambiguity,
   per-command device IDs, private playlists, partial/uncertain mutations,
   bounded protocol, cancellation, duplicate delivery and redacted failures.
 - Dependencies: no third-party runtime/build packages; Node and Python standard
@@ -53,7 +53,9 @@ Spotify integration artifact comes from `dcf2de644e1b78d24d4768f0a18619dcbfad37c
 SHA-256 `45d5d09308a0276d2fc110f9daa976fa2bd22303c44b153dbe3486c536e38428`,
 and is committed in the host test fixtures. macOS 26.6.2 arm64, Node 24.20.0,
 Python.org 3.14.3 and Electron 44.8.0 / embedded Node 24.22.0 were exercised.
-Independent review and latest-commit push/PR CI are still pending. Native visual/keyboard inspection is unavailable because
+Independent review found three uncertainty-reporting defects across the host
+and worker; the fix pass adds crash, cancellation, receipt-write and partial
+playlist regressions. Final reruns and latest-commit push/PR CI are pending. Native visual/keyboard inspection is unavailable because
 Computer Use has not been approved for Safari. No real Spotify account, token,
 playlist or playback action has been used.
 

@@ -10,3 +10,6 @@
 - Target typed commands; Spotify voice control is excluded by provider policy.
 
 No public package or live account verification has been released.
+
+- Preserve generic uncertainty after playlist creation if additions fail, while
+  retaining the created-playlist link only in the private owner card.
