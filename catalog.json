@@ -1,0 +1,13 @@
+{
+  "catalogVersion": 1,
+  "abilities": [
+    {
+      "id": "spotify",
+      "name": "Spotify",
+      "path": "abilities/spotify",
+      "status": "planned",
+      "version": null,
+      "license": "MIT"
+    }
+  ]
+}
