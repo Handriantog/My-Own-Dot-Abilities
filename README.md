@@ -15,7 +15,7 @@ account credentials and execution; this collection owns individual workers.
 
 | Ability                                | Purpose                                              | Status                                       |
 | -------------------------------------- | ---------------------------------------------------- | -------------------------------------------- |
-| [Spotify](abilities/spotify/README.md) | Search, playback control, playlists, and saved songs | Source implemented; verification in progress |
+| [Spotify](abilities/spotify/README.md) | Search, playback control, playlists, and saved songs | Packaged fixtures verified; live checks pending |
 
 [catalog.json](catalog.json) is the machine-readable development index. It is
 not an installer manifest and does not authorize execution or grant permissions.

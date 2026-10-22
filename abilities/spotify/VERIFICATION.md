@@ -31,7 +31,7 @@ and credential guards pass. The actual packaged host accepted and sealed the
 20-file development artifact through its production installer; only offline
 GitHub metadata/download transport was supplied by the check.
 
-Nine real-host integration scenarios pass using the sealed archive and production
+Eleven real-host integration scenarios pass using the sealed archive and production
 bundled host: per-Dot consent, required notice agreement, mock browser PKCE,
 host-encrypted credentials, all eleven tools, private choices, exact HTTP routes,
 401 refresh/revocation, expired selections, disable/re-enable/disconnect, unknown
@@ -45,17 +45,21 @@ Host-generic tests separately cover real desktop crashes/freeze, native process
 reaping, changed permissions, restore-disabled bindings and interrupted durable
 receipts. These are platform invariants, not extra live Spotify claims.
 
-Final local host checks pass: 233 files / 1,966 tests (one existing certificate
-identity skip); native acceptance 14 checks in each of two profiles and 242
+Final local host checks pass: 233 files / 1,972 tests (one existing certificate
+identity skip); native acceptance 14 checks in each of two profiles and 248
 integration tests; format/lint/types/build; speech 31 + 17; desktop package and
 relocated actual-app smoke for JavaScript, Python and native workers. The sealed
-Spotify integration artifact comes from `dcf2de644e1b78d24d4768f0a18619dcbfad37cf`,
-SHA-256 `45d5d09308a0276d2fc110f9daa976fa2bd22303c44b153dbe3486c536e38428`,
+Spotify integration artifact comes from `89573743f1be4accd4e1a643fcae1fb960b72a7e`,
+SHA-256 `672dc437bf767efa974a9f15569770b15baa8b782d083ae080216b041e04619f`,
 and is committed in the host test fixtures. macOS 26.6.2 arm64, Node 24.20.0,
 Python.org 3.14.3 and Electron 44.8.0 / embedded Node 24.22.0 were exercised.
 Independent review found three uncertainty-reporting defects across the host
-and worker; the fix pass adds crash, cancellation, receipt-write and partial
-playlist regressions. Final reruns and latest-commit push/PR CI are pending. Native visual/keyboard inspection is unavailable because
+and worker; crash, cancellation, receipt/projection and partial-playlist regressions
+failed before the fixes and pass afterwards. Worker checks pass 95/95; final host
+suite passes 1,972 tests with one existing skip. Actual agent captures preserve
+uncertainty for partial creation followed by 403, 503 and connection loss.
+No Critical or Minor issues were identified. [Implementation decisions](../../docs/spotify-decisions.md)
+record the rationale and costs. Latest-commit push/PR CI remains a handoff gate. Native visual/keyboard inspection is unavailable because
 Computer Use has not been approved for Safari. No real Spotify account, token,
 playlist or playback action has been used.
 
