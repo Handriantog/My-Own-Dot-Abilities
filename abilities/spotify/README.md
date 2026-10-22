@@ -2,9 +2,11 @@
 
 Teach a Dot to control your Spotify listening and manage playlists.
 
-**Status: planned.** This directory contains the initial scope, not executable
-code or an installable release. Host Ability support and the Spotify implementation
-are still to be built and verified.
+**Status: in development.** The API-1 manifest declares eleven owner-only tools,
+six OAuth scopes and sixteen exact HTTP rules against tested host commit
+`1cf89f4087a1f0559cd784199fc3fd327aec4a1a`. Worker implementation is in progress.
+Manifest version `0.1.0` is a development version; the catalog stays unreleased
+and no installable release or live account verification is claimed.
 
 ## Initial scope
 
@@ -24,7 +26,7 @@ stops Ability workers and monitoring without closing Spotify or stopping music.
 The Ability will request access to the selected Spotify account's playback,
 playlists, and saved songs, plus the necessary Spotify network endpoints. It does
 not need general folder access, desktop capture, or shell execution for this API
-integration. Final permission declarations depend on the host package contract.
+integration. Exact permission declarations are in [ability.json](ability.json).
 
 Use browser authorization with PKCE and host-managed credentials. Do not put
 Spotify passwords, client secrets, or tokens in the package. A personal developer
