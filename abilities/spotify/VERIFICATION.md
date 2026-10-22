@@ -45,8 +45,15 @@ Host-generic tests separately cover real desktop crashes/freeze, native process
 reaping, changed permissions, restore-disabled bindings and interrupted durable
 receipts. These are platform invariants, not extra live Spotify claims.
 
-Final full-suite/packaged-app checks, independent review and latest-commit push/PR
-CI are still pending. Native visual/keyboard inspection is unavailable because
+Final local host checks pass: 233 files / 1,966 tests (one existing certificate
+identity skip); native acceptance 14 checks in each of two profiles and 242
+integration tests; format/lint/types/build; speech 31 + 17; desktop package and
+relocated actual-app smoke for JavaScript, Python and native workers. The sealed
+Spotify integration artifact comes from `dcf2de644e1b78d24d4768f0a18619dcbfad37cf`,
+SHA-256 `45d5d09308a0276d2fc110f9daa976fa2bd22303c44b153dbe3486c536e38428`,
+and is committed in the host test fixtures. macOS 26.6.2 arm64, Node 24.20.0,
+Python.org 3.14.3 and Electron 44.8.0 / embedded Node 24.22.0 were exercised.
+Independent review and latest-commit push/PR CI are still pending. Native visual/keyboard inspection is unavailable because
 Computer Use has not been approved for Safari. No real Spotify account, token,
 playlist or playback action has been used.
 
