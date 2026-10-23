@@ -21,9 +21,10 @@ enforce them independently:
 - Deny undeclared or unapproved access, enforced outside the Ability's code.
 - Support JavaScript/TypeScript, Python, and native executables through a common
   host contract. The current host verifies confinement on macOS 26 Apple Silicon.
-- App/window/desktop automation is future host work; the current host offers
-  scoped HTTPS, OAuth and confined helpers. System services and drivers are outside
-  the initial scope. Keep dependencies private to each Ability.
+- The host offers scoped HTTPS, OAuth, confined helpers and enumerated
+  Spotify-only local app control. General app/window/desktop automation, system
+  services and drivers remain outside this scope. Keep dependencies private to
+  each Ability.
 - Stop Ability-owned processes and descendants when disabled or when Dot quits.
   Closing a window is not quitting. External apps such as Spotify may remain open.
 - Require fresh consent when an update requests additional access.

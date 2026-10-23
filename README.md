@@ -7,15 +7,17 @@ This repository hosts independently developed and versioned **Abilities** for
 once in a workspace and enabled for selected Dots, with explicit permissions.
 Other developers can publish Abilities in their own repositories.
 
-**Status:** Spotify has a dependency-free worker implementation for the version-one Dot Ability host.
+**Status:** Spotify Web API and Spotify Local have independent dependency-free
+workers for the version-one Dot Ability host.
 There are no published Ability releases yet. The host owns permission enforcement,
 account credentials and execution; this collection owns individual workers.
 
 ## Abilities
 
-| Ability                                | Purpose                                              | Status                                       |
-| -------------------------------------- | ---------------------------------------------------- | -------------------------------------------- |
-| [Spotify](abilities/spotify/README.md) | Search, playback control, playlists, and saved songs | Packaged fixtures verified; live checks pending |
+| Ability                                        | Purpose                                              | Status                                          |
+| ---------------------------------------------- | ---------------------------------------------------- | ----------------------------------------------- |
+| [Spotify Web API](abilities/spotify/README.md) | Search, playback control, playlists, and saved songs | Packaged fixtures verified; live checks pending |
+| [Spotify Local](abilities/spotify-local/README.md) | Desktop playback, search, saved songs and playlists | Development package; core local controls live-tested |
 
 [catalog.json](catalog.json) is the machine-readable development index. It is
 not an installer manifest and does not authorize execution or grant permissions.
