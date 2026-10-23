@@ -18,7 +18,7 @@ and whitespace checks. Following documentation-only polish, the 38 affected
 Mouse Mover tests pass; packaging was repeated from clean commits.
 
 The My Own Dots production installer extracts and seals every final archive.
-Seven production integration tests pass against the frozen final bytes. Mouse
+Eight production integration tests pass against the frozen final bytes. Mouse
 Mover runs its real confined worker through the separately bundled Ability host,
 SQLite service and HTTP desktop bridges. Fake native effects verify that install
 and enable do not start it, explicit text/voice can start/status/stop, manual input
@@ -27,9 +27,13 @@ up. Accessibility and unavailable-desktop errors retain their fixed public codes
 across the bundle boundary. No owner cursor or workspace is used.
 
 The actual companion rig renders the package's right-hand pose and timing:
-1,600 ms approach, 5,000 ms idle resume, 823 frames, 240 fake moves, maximum
-rendered-palm error `1.2710574864626038e-13` logical pixels and no retained sleep
-blocker. Production Ability UI captures cover all three icons, catalog/installed
+1,600 ms approach, 5,000 ms idle resume, 1,033 frames, 450 fake moves, maximum
+rendered-palm error `1.6077746776921858e-13` logical pixels and no retained sleep
+blocker. Final host review corrected travel in Dock-reserved space: exact pickup
+still uses the full display, then movement eases into its usable work area.
+Bottom/side Dock and negative-origin fixtures pass; the refreshed actual-rig
+preview records zero pickup error and zero usable-area overflow across 210
+settled frames. This host-only correction does not change the package bytes. Production Ability UI captures cover all three icons, catalog/installed
 lists, package READMEs, permissions and review footers at 1,120px/360px in light
 and dark themes. The controller inspected the rig and representative captures.
 The README now puts owner behavior before authoring details; setup names desktop
