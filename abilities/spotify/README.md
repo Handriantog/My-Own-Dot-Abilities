@@ -1,52 +1,61 @@
 # Spotify Ability
 
-Teach a Dot to control your Spotify listening and manage playlists.
+Teach a selected Dot to search Spotify, control your player, create private
+playlists, and save songs to Liked Songs. Spotify plays the audio.
 
-**Status: planned.** This directory contains the initial scope, not executable
-code or an installable release. Host Ability support and the Spotify implementation
-are still to be built and verified.
+**Source implementation, unreleased.** The dependency-free worker implements
+11 tools against Dot Ability API 1. Automated tests use synthetic provider data.
+No live account verification or public installable release is claimed.
+The first version targets typed commands on macOS 26 Apple Silicon. Spotify's
+[Developer Policy](https://developer.spotify.com/policy) prohibits third-party
+voice control; the host enforces that restriction in direct and delegated voice.
 
-## Initial scope
+Follow [SETUP.md](SETUP.md) for your personal Spotify Developer app. Read
+[permissions](ability.json), [privacy](PRIVACY.md), [terms](TERMS.md), and
+[verification status](VERIFICATION.md) before use.
 
-- Search songs, artists, albums, and playlists.
-- Play, pause, resume, skip, and inspect the current track/playback device.
-- Queue songs and adjust volume.
-- Create playlists and add songs.
-- Save songs to Liked Songs; saving does not download audio.
-- Make these actions available through the selected Dot's chat and voice tools.
+## What it does
 
-Proposed defaults are private playlists and the user's active Spotify device,
-with a device selector when needed. Spotify handles audio playback. Quitting Dot
-stops Ability workers and monitoring without closing Spotify or stopping music.
+- Search tracks, artists, albums and playlists; display results directly.
+- Play/resume, pause, skip, queue a track and change supported device volume.
+- List playlists, create private playlists, add tracks and save Liked Songs.
 
-## Access and setup
+It uses the active player unless you explicitly choose another available device.
+Ambiguous songs, playlists or devices produce private choices on screen. Spotify
+metadata never enters the AI tool result. Approved actions need no repeated
+permission prompt. Quitting Dot stops Ability workers; Spotify can keep playing.
+Saving a song does not download audio. Public playlist writes are not included.
 
-The Ability will request access to the selected Spotify account's playback,
-playlists, and saved songs, plus the necessary Spotify network endpoints. It does
-not need general folder access, desktop capture, or shell execution for this API
-integration. Final permission declarations depend on the host package contract.
+## Development
 
-Use browser authorization with PKCE and host-managed credentials. Do not put
-Spotify passwords, client secrets, or tokens in the package. A personal developer
-app configuration is the proposed initial distribution path; shared-app access
-is subject to Spotify's limits.
+Node 24+ and Python 3.11+; no npm installation is needed. From the repository root:
 
-As checked on October 23, 2026, API playback requires Premium. Development apps
-require their owner to have Premium and allow up to five authenticated,
-allowlisted users. Endpoint availability and quotas must be rechecked before
-implementation and release.
+```sh
+node --test abilities/spotify/test/*.test.mjs
+python3 abilities/spotify/scripts/check_manifest.py
+python3 scripts/check_repository.py
+git diff --check
+python3 abilities/spotify/scripts/package.py --development --output dist/spotify-check
+```
 
-- [Playback API](https://developer.spotify.com/documentation/web-api/reference/start-a-users-playback)
-- [Quota modes](https://developer.spotify.com/documentation/web-api/concepts/quota-modes)
-- [PKCE authentication](https://developer.spotify.com/documentation/web-api/tutorials/code-pkce-flow)
-- [Current API guidance](https://developer.spotify.com/documentation/web-api/tutorials/building-with-ai)
+Packaging uses an explicit source/document allowlist, deterministic tar/gzip,
+MIT license and a per-file inventory. Output directories must not contain the
+same artifacts already. Tests/caches/environment files are excluded. A basic
+credential-pattern check is a guard against accidents, not a secret audit.
 
-## Verification
+Development descriptors use a `spotify/development-<commit>` tag and an offline
+placeholder asset ID. They are for disposable acceptance fixtures, not release
+installation. Release metadata requires clean committed source and the real
+GitHub archive asset ID via `--asset-id`; packaging never uploads or publishes.
+The maintainer must create the final descriptor against that exact uploaded
+archive, verify its digest/size/source, and separately authorize publication.
+`catalog.json` remains unreleased until that happens.
 
-No live account or playback verification has been performed. Future automated
-tests should use fixtures for discovery, permissions, token expiry, rate limits,
-missing devices, and ambiguous mutation results. Real playlist/library changes
-and playback tests require explicit account-owner authorization.
+The worker imports only its own source and manifest. Host enforcement and shared
+interfaces belong in [My Own Dots](https://github.com/Handriantog/My-Own-Dots).
+For an owner selection continuing an ambiguous command, reuse the same tool and
+arguments with its opaque selection reference. The host verifies reference
+ownership, expiry and account/consent binding before passing private data.
 
-Original code will use the repository's [MIT license](../../LICENSE). Any bundled
-dependencies retain their own notices. This project is not affiliated with Spotify.
+Original source is [MIT](LICENSE). No third-party runtime code or audio is bundled.
+This independent project is not sponsored or endorsed by Spotify.

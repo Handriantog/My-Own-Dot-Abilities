@@ -5,7 +5,15 @@
       "id": "spotify",
       "name": "Spotify",
       "path": "abilities/spotify",
-      "status": "planned",
+      "status": "development",
+      "version": null,
+      "license": "MIT"
+    },
+    {
+      "id": "spotify-local",
+      "name": "Spotify Local",
+      "path": "abilities/spotify-local",
+      "status": "development",
       "version": null,
       "license": "MIT"
     }

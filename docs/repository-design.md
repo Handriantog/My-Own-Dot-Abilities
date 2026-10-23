@@ -7,20 +7,25 @@ account credential handling, per-Dot grants, lifecycle supervision, and shared
 developer interfaces. This repository owns the individual Ability packages and
 their documentation, tests, and release assets.
 
-The user-facing feature is **Abilities**. Teaching an Ability enables it for a
-selected Dot. Installation is shared; enablement, grants, settings, and private
+The user-facing feature is **Abilities**. Installation and permission review happen in the central sidebar section. New
+installs start disabled. The workspace master switch preserves per-Dot choices;
+Apply to all Dot enables existing Dots only. Installation is shared; enablement, grants, settings, and private
 Ability state are scoped to each Dot. No Dot silently inherits another's grants.
 
-These are agreed product requirements, not implemented security guarantees:
+These are the agreed product requirements. Current host implementation and
+verified boundaries are documented in My Own Dots; the collection does not
+enforce them independently:
 
 - Anyone may develop and distribute an Ability through GitHub.
 - Show the exact package identity/version and requested access before approving
   installation or executing any supplied setup code.
 - Deny undeclared or unapproved access, enforced outside the Ability's code.
 - Support JavaScript/TypeScript, Python, and native executables through a common
-  host contract. The isolation mechanism still requires design and verification.
-- Support app/window/desktop automation; system services and drivers are outside
-  the initial scope. Keep dependencies private to each Ability.
+  host contract. The current host verifies confinement on macOS 26 Apple Silicon.
+- The host offers scoped HTTPS, OAuth, confined helpers and enumerated
+  Spotify-only local app control. General app/window/desktop automation, system
+  services and drivers remain outside this scope. Keep dependencies private to
+  each Ability.
 - Stop Ability-owned processes and descendants when disabled or when Dot quits.
   Closing a window is not quitting. External apps such as Spotify may remain open.
 - Require fresh consent when an update requests additional access.
@@ -41,8 +46,8 @@ into a JavaScript package structure.
 unique `id`, display `name`, exact `abilities/<id>` path, `status`, latest published
 `version` (null before release), and `license`. Status is `planned`, `development`,
 or `released`. This index must not be used as an execution manifest or proof that
-an Ability is trusted. The installable package manifest will follow the host's
-separately designed contract.
+an Ability is trusted. Installable package manifests follow the host's public API contract; Spotify
+pins its schema and protocol fixtures to a tested host commit.
 
 ## Independent releases
 
@@ -71,8 +76,9 @@ approval count is zero to support the current solo maintainer, matching the Dots
 repository's review policy; collaborators may still review changes.
 
 The CI workflow uses a GitHub-hosted Ubuntu runner and system Python. It fetches
-the public repository at the event's exact commit with plain Git, uses no
-third-party actions, installs no packages, and requests no token permissions.
-There is no `pull_request_target` workflow. Its checks cover repository structure,
-catalog consistency, license presence, and whitespace. Runtime/security and
-Ability-specific tests must be added as those implementations are introduced.
+the public repository at the event's exact commit with plain Git, uses the
+reviewed SHA-pinned GitHub setup-node action for Node 24.20.0, installs no
+Ability dependencies, and requests no token permissions. There is no
+`pull_request_target` workflow. Checks cover repository structure, catalog,
+licenses, whitespace, Spotify manifest/worker tests and deterministic packaging.
+Actual OS confinement and packaged-host acceptance run in the host repository.

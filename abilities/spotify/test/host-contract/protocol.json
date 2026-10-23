@@ -1,0 +1,110 @@
+{
+  "apiVersion": 1,
+  "frames": [
+    {
+      "direction": "host",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": "initialize-1",
+        "method": "initialize",
+        "params": {
+          "apiVersion": 1
+        }
+      }
+    },
+    {
+      "direction": "worker",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": "initialize-1",
+        "result": {
+          "apiVersion": 1
+        }
+      }
+    },
+    {
+      "direction": "host",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": "invoke-1",
+        "method": "invoke",
+        "params": {
+          "tool": "search",
+          "arguments": {
+            "query": "synthetic song"
+          },
+          "settings": {
+            "clientId": "fixture-client"
+          }
+        }
+      }
+    },
+    {
+      "direction": "worker",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": "cap-1",
+        "method": "capability",
+        "params": {
+          "kind": "https",
+          "ruleId": "search",
+          "pathValues": {},
+          "query": {
+            "q": "synthetic song",
+            "type": "track",
+            "limit": 5
+          }
+        }
+      }
+    },
+    {
+      "direction": "host",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": "cap-1",
+        "result": {
+          "ok": true,
+          "kind": "https",
+          "status": 200,
+          "headers": {
+            "contentType": "application/json"
+          },
+          "body": "{\"tracks\":{\"items\":[]}}"
+        }
+      }
+    },
+    {
+      "direction": "worker",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": "invoke-1",
+        "result": {
+          "status": "success",
+          "owner": {
+            "kind": "text",
+            "text": "No results.",
+            "attribution": "Spotify"
+          }
+        }
+      }
+    },
+    {
+      "direction": "host",
+      "message": {
+        "jsonrpc": "2.0",
+        "method": "cancel",
+        "params": {
+          "id": "invoke-1"
+        }
+      }
+    },
+    {
+      "direction": "host",
+      "message": {
+        "jsonrpc": "2.0",
+        "method": "shutdown",
+        "params": {}
+      }
+    }
+  ]
+}

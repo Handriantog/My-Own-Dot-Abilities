@@ -7,18 +7,37 @@ This repository hosts independently developed and versioned **Abilities** for
 once in a workspace and enabled for selected Dots, with explicit permissions.
 Other developers can publish Abilities in their own repositories.
 
-**Status:** repository foundation only. Spotify is the first planned Ability;
-there are no installable Ability releases yet. The Ability runtime, permission
-enforcement, and package contract are being designed in My Own Dots.
+**Status:** Spotify Web API and Spotify Local have independent dependency-free
+workers for the version-one Dot Ability host.
+There are no published Ability releases yet. The host owns permission enforcement,
+account credentials and execution; this collection owns individual workers.
 
 ## Abilities
 
-| Ability | Purpose | Status |
-| --- | --- | --- |
-| [Spotify](abilities/spotify/README.md) | Search, playback control, playlists, and saved songs | Planned |
+| Ability                                        | Purpose                                              | Status                                          |
+| ---------------------------------------------- | ---------------------------------------------------- | ----------------------------------------------- |
+| [Spotify Web API](abilities/spotify/README.md) | Search, playback control, playlists, and saved songs | Packaged fixtures verified; live checks pending |
+| [Spotify Local](abilities/spotify-local/README.md) | Desktop playback, search, saved songs and playlists | Development package; core local controls live-tested |
 
 [catalog.json](catalog.json) is the machine-readable development index. It is
 not an installer manifest and does not authorize execution or grant permissions.
+
+## Browse and install
+
+In Dot, open **Abilities** below Memory. Search installed Abilities and the GitHub
+collection, then select one to read its full README and permissions. Unreleased
+entries show their development status; they have no collection Install action.
+
+For a local development package, use **+ (Add Ability) → Choose local Ability…**.
+For a published package from another GitHub repository, use the same menu and
+enter its release descriptor URL. Open **Install** in the detail header, review
+the actual access and storage paths, then approve installation. New installs stay
+disabled. Choose **Enable**, then assign individual Dots or **Apply to all Dot**.
+
+**Disable** preserves per-Dot choices. **Uninstall** confirms removal of the
+selected version from all Dots and keeps its private files. Other separately
+approved versions remain installed. See each Ability's setup guide for OS or
+account requirements.
 
 ## Repository layout
 
