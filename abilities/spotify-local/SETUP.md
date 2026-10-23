@@ -1,11 +1,16 @@
 # Local development setup
 
 The updated `feat/abilities` host and Spotify desktop app are required. Open
-Spotify and sign in yourself. In Dot settings → Abilities, choose **Choose local
+Spotify and sign in yourself. In the sidebar’s **Abilities** section below Memory, choose **Choose local
 Ability…**, select the generated JSON descriptor beside its matching `.tar.gz`,
-review the local source and permissions, then choose **Teach**. The chooser reads
-and hashes a snapshot; it executes nothing before Teach. Local archives are
+review the local source and permissions, then choose **Install**. The chooser reads
+and hashes a snapshot; it executes nothing before Install. Local archives are
 limited to 16 MiB and review expires after ten minutes.
+
+After installing, choose **Enable**. Use **Apply to all Dot** for existing Dots,
+or select the Ability in one Dot’s settings. The workspace master switch keeps
+each Dot’s choice; newly created Dots stay off. Use **Reconnect** if the Ability
+host disconnects. Reconnection never repeats an interrupted Spotify command.
 
 On the first playback request macOS may ask to let My Own Dots control Spotify.
 Approve it to use playback; manage it in System Settings → Privacy & Security →

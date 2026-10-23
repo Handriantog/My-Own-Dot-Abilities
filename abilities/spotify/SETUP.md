@@ -24,8 +24,9 @@ See [quota modes](https://developer.spotify.com/documentation/web-api/concepts/q
 
 3. Add the Spotify account you intend to use to the app's allowed users if the
    dashboard requires it.
-4. In Dot, select the Dot to teach, open **Abilities**, and review the released
-   package's identity, source revision, access and storage paths before teaching it.
+4. Open **Abilities** in the sidebar and review the released package’s identity,
+   source revision, access and storage paths before choosing **Install**. Enable
+   the workspace master switch, then select Spotify in the intended Dot’s settings.
 5. Enter the public **Client ID** in that Dot's Spotify settings. Never enter a
    client secret, Spotify password, access token or refresh token.
 6. Select **Connect account**. Review Spotify's consent in your system browser

@@ -7,8 +7,9 @@ account credential handling, per-Dot grants, lifecycle supervision, and shared
 developer interfaces. This repository owns the individual Ability packages and
 their documentation, tests, and release assets.
 
-The user-facing feature is **Abilities**. Teaching an Ability enables it for a
-selected Dot. Installation is shared; enablement, grants, settings, and private
+The user-facing feature is **Abilities**. Installation and permission review happen in the central sidebar section. New
+installs start disabled. The workspace master switch preserves per-Dot choices;
+Apply to all Dot enables existing Dots only. Installation is shared; enablement, grants, settings, and private
 Ability state are scoped to each Dot. No Dot silently inherits another's grants.
 
 These are the agreed product requirements. Current host implementation and
