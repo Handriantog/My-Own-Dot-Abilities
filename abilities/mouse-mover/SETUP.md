@@ -9,10 +9,12 @@ these fields. No public desktop version floor or Ability release exists yet.
    the local development descriptor/archive from this package.
 2. Review its identity, actual installation folder and pointer/display access,
    then approve installation. Installation starts disabled.
-3. Enable Mouse Mover and select the Dots allowed to use it. Approve the
-   `movement` permission for the chosen Dot and any desktop OS consent shown by
-   the host. No account, helper or workspace-file access is requested.
-4. Say or type “Start Mouse Mover”. Ask for its status or say “Stop Mouse Mover”.
+3. Enable Mouse Mover and select the Dots allowed to use it. Choose **Use on
+   desktop** for the Dot you will ask, and keep that desktop Dot visible.
+4. If pointer setup is needed, enable **My Own Dots** in **System Settings →
+   Privacy & Security → Accessibility**. No account, helper or workspace-file
+   access is requested.
+5. Say or type “Start Mouse Mover”. Ask for its status or say “Stop Mouse Mover”.
 
 Manual mouse use pauses movement immediately; five seconds of mouse inactivity
 lets it resume. Display keep-awake remains active while paused. Disable Mouse
