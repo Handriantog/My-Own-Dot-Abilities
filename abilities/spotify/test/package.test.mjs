@@ -60,10 +60,10 @@ function success(result) {
 async function files(root, out = "one") {
   return {
     descriptor: JSON.parse(
-      await readFile(join(root, out, "spotify-0.1.0.json")),
+      await readFile(join(root, out, "spotify-0.1.1.json")),
     ),
     archive: await readFile(
-      join(root, out, "spotify-0.1.0.dot-ability.tar.gz"),
+      join(root, out, "spotify-0.1.1.dot-ability.tar.gz"),
     ),
   };
 }
@@ -91,7 +91,7 @@ test("archive is deterministic, includes only allowlisted source/licenses and ma
     execFileSync("python3", [
       "-c",
       'import json,sys,tarfile; t=tarfile.open(sys.argv[1]); print(json.dumps({m.name:{"size":m.size,"mode":m.mode,"data":t.extractfile(m).read().decode()} for m in t}))',
-      join(f.root, "one/spotify-0.1.0.dot-ability.tar.gz"),
+      join(f.root, "one/spotify-0.1.1.dot-ability.tar.gz"),
     ]).toString(),
   );
   assert.equal(Object.keys(listing).length, one.descriptor.asset.fileCount);
@@ -128,7 +128,7 @@ test("release packaging requires a real asset ID, clean committed source and the
   const f = await fixture(t);
   assert.notEqual(f.pack("missing", []).status, 0);
   success(f.pack("one", ["--asset-id", "12345"]));
-  assert.equal((await files(f.root)).descriptor.releaseTag, "spotify/v0.1.0");
+  assert.equal((await files(f.root)).descriptor.releaseTag, "spotify/v0.1.1");
   await writeFile(join(f.ability, "src/worker.mjs"), "// Uncommitted source");
   const dirty = f.pack("dirty", ["--asset-id", "12345"]);
   assert.notEqual(dirty.status, 0);

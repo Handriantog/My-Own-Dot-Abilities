@@ -1,0 +1,508 @@
+{
+  "formatVersion": 1,
+  "apiVersion": 1,
+  "id": "mouse-mover",
+  "name": "Mouse Mover",
+  "description": "Ask your Dot to carry the pointer gently and keep the display awake until you stop.",
+  "publisher": "Handriantog",
+  "source": {
+    "owner": "handriantog",
+    "repository": "my-own-dot-abilities"
+  },
+  "version": "0.1.0",
+  "license": "MIT",
+  "platforms": [
+    "darwin-arm64"
+  ],
+  "entrypoint": {
+    "runtime": "javascript",
+    "path": "src/worker.mjs"
+  },
+  "helpers": [],
+  "icon": {
+    "background": "#245C78",
+    "foreground": "#FFFFFF",
+    "paths": [
+      "M7 2 L18 13 L13 14 L16 20 L13 22 L10 16 L6 20 Z"
+    ]
+  },
+  "settings": {
+    "type": "object",
+    "properties": {},
+    "required": [],
+    "additionalProperties": false
+  },
+  "tools": [
+    {
+      "id": "start",
+      "description": "Start Mouse Mover only when the owner explicitly asks to move the mouse or keep the display awake.",
+      "input": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "output": {
+        "type": "null"
+      },
+      "visibility": "owner-only",
+      "channels": [
+        "text",
+        "voice"
+      ],
+      "execution": "interactive"
+    },
+    {
+      "id": "stop",
+      "description": "Stop Mouse Mover and release its pointer and keep-awake access.",
+      "input": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "output": {
+        "type": "null"
+      },
+      "visibility": "owner-only",
+      "channels": [
+        "text",
+        "voice"
+      ],
+      "execution": "interactive"
+    },
+    {
+      "id": "status",
+      "description": "Report whether Mouse Mover is stopped, approaching, running, or paused for manual mouse use.",
+      "input": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "output": {
+        "type": "null"
+      },
+      "visibility": "owner-only",
+      "channels": [
+        "text",
+        "voice"
+      ],
+      "execution": "interactive"
+    }
+  ],
+  "activities": [
+    {
+      "id": "carry-pointer",
+      "durationMs": 24000,
+      "approachMs": 1600,
+      "loop": true,
+      "motion": {
+        "width": 160,
+        "height": 96
+      },
+      "keyframes": [
+        {
+          "at": 0.0,
+          "x": 0.8,
+          "y": 0.0,
+          "pose": {
+            "leftArm": 0.12,
+            "rightArm": -1.05,
+            "leftArmLength": 36,
+            "rightArmLength": 52,
+            "lean": 0.025,
+            "bodyY": 0.0,
+            "leftFootY": 0,
+            "rightFootY": 0
+          }
+        },
+        {
+          "at": 0.04166667,
+          "x": 0.772741,
+          "y": 0.207055,
+          "pose": {
+            "leftArm": 0.12,
+            "rightArm": -1.05,
+            "leftArmLength": 36,
+            "rightArmLength": 52,
+            "lean": 0.027588,
+            "bodyY": 0.155291,
+            "leftFootY": 0,
+            "rightFootY": 0
+          }
+        },
+        {
+          "at": 0.08333333,
+          "x": 0.69282,
+          "y": 0.4,
+          "pose": {
+            "leftArm": 0.12,
+            "rightArm": -1.05,
+            "leftArmLength": 36,
+            "rightArmLength": 52,
+            "lean": 0.03,
+            "bodyY": 0.3,
+            "leftFootY": 0,
+            "rightFootY": 0
+          }
+        },
+        {
+          "at": 0.125,
+          "x": 0.565685,
+          "y": 0.565685,
+          "pose": {
+            "leftArm": 0.12,
+            "rightArm": -1.05,
+            "leftArmLength": 36,
+            "rightArmLength": 52,
+            "lean": 0.032071,
+            "bodyY": 0.424264,
+            "leftFootY": 0,
+            "rightFootY": 0
+          }
+        },
+        {
+          "at": 0.16666667,
+          "x": 0.4,
+          "y": 0.69282,
+          "pose": {
+            "leftArm": 0.12,
+            "rightArm": -1.05,
+            "leftArmLength": 36,
+            "rightArmLength": 52,
+            "lean": 0.03366,
+            "bodyY": 0.519615,
+            "leftFootY": 0,
+            "rightFootY": 0
+          }
+        },
+        {
+          "at": 0.20833333,
+          "x": 0.207055,
+          "y": 0.772741,
+          "pose": {
+            "leftArm": 0.12,
+            "rightArm": -1.05,
+            "leftArmLength": 36,
+            "rightArmLength": 52,
+            "lean": 0.034659,
+            "bodyY": 0.579555,
+            "leftFootY": 0,
+            "rightFootY": 0
+          }
+        },
+        {
+          "at": 0.25,
+          "x": 0.0,
+          "y": 0.8,
+          "pose": {
+            "leftArm": 0.12,
+            "rightArm": -1.05,
+            "leftArmLength": 36,
+            "rightArmLength": 52,
+            "lean": 0.035,
+            "bodyY": 0.6,
+            "leftFootY": 0,
+            "rightFootY": 0
+          }
+        },
+        {
+          "at": 0.29166667,
+          "x": -0.207055,
+          "y": 0.772741,
+          "pose": {
+            "leftArm": 0.12,
+            "rightArm": -1.05,
+            "leftArmLength": 36,
+            "rightArmLength": 52,
+            "lean": 0.034659,
+            "bodyY": 0.579555,
+            "leftFootY": 0,
+            "rightFootY": 0
+          }
+        },
+        {
+          "at": 0.33333333,
+          "x": -0.4,
+          "y": 0.69282,
+          "pose": {
+            "leftArm": 0.12,
+            "rightArm": -1.05,
+            "leftArmLength": 36,
+            "rightArmLength": 52,
+            "lean": 0.03366,
+            "bodyY": 0.519615,
+            "leftFootY": 0,
+            "rightFootY": 0
+          }
+        },
+        {
+          "at": 0.375,
+          "x": -0.565685,
+          "y": 0.565685,
+          "pose": {
+            "leftArm": 0.12,
+            "rightArm": -1.05,
+            "leftArmLength": 36,
+            "rightArmLength": 52,
+            "lean": 0.032071,
+            "bodyY": 0.424264,
+            "leftFootY": 0,
+            "rightFootY": 0
+          }
+        },
+        {
+          "at": 0.41666667,
+          "x": -0.69282,
+          "y": 0.4,
+          "pose": {
+            "leftArm": 0.12,
+            "rightArm": -1.05,
+            "leftArmLength": 36,
+            "rightArmLength": 52,
+            "lean": 0.03,
+            "bodyY": 0.3,
+            "leftFootY": 0,
+            "rightFootY": 0
+          }
+        },
+        {
+          "at": 0.45833333,
+          "x": -0.772741,
+          "y": 0.207055,
+          "pose": {
+            "leftArm": 0.12,
+            "rightArm": -1.05,
+            "leftArmLength": 36,
+            "rightArmLength": 52,
+            "lean": 0.027588,
+            "bodyY": 0.155291,
+            "leftFootY": 0,
+            "rightFootY": 0
+          }
+        },
+        {
+          "at": 0.5,
+          "x": -0.8,
+          "y": 0.0,
+          "pose": {
+            "leftArm": 0.12,
+            "rightArm": -1.05,
+            "leftArmLength": 36,
+            "rightArmLength": 52,
+            "lean": 0.025,
+            "bodyY": 0.0,
+            "leftFootY": 0,
+            "rightFootY": 0
+          }
+        },
+        {
+          "at": 0.54166667,
+          "x": -0.772741,
+          "y": -0.207055,
+          "pose": {
+            "leftArm": 0.12,
+            "rightArm": -1.05,
+            "leftArmLength": 36,
+            "rightArmLength": 52,
+            "lean": 0.022412,
+            "bodyY": -0.155291,
+            "leftFootY": 0,
+            "rightFootY": 0
+          }
+        },
+        {
+          "at": 0.58333333,
+          "x": -0.69282,
+          "y": -0.4,
+          "pose": {
+            "leftArm": 0.12,
+            "rightArm": -1.05,
+            "leftArmLength": 36,
+            "rightArmLength": 52,
+            "lean": 0.02,
+            "bodyY": -0.3,
+            "leftFootY": 0,
+            "rightFootY": 0
+          }
+        },
+        {
+          "at": 0.625,
+          "x": -0.565685,
+          "y": -0.565685,
+          "pose": {
+            "leftArm": 0.12,
+            "rightArm": -1.05,
+            "leftArmLength": 36,
+            "rightArmLength": 52,
+            "lean": 0.017929,
+            "bodyY": -0.424264,
+            "leftFootY": 0,
+            "rightFootY": 0
+          }
+        },
+        {
+          "at": 0.66666667,
+          "x": -0.4,
+          "y": -0.69282,
+          "pose": {
+            "leftArm": 0.12,
+            "rightArm": -1.05,
+            "leftArmLength": 36,
+            "rightArmLength": 52,
+            "lean": 0.01634,
+            "bodyY": -0.519615,
+            "leftFootY": 0,
+            "rightFootY": 0
+          }
+        },
+        {
+          "at": 0.70833333,
+          "x": -0.207055,
+          "y": -0.772741,
+          "pose": {
+            "leftArm": 0.12,
+            "rightArm": -1.05,
+            "leftArmLength": 36,
+            "rightArmLength": 52,
+            "lean": 0.015341,
+            "bodyY": -0.579555,
+            "leftFootY": 0,
+            "rightFootY": 0
+          }
+        },
+        {
+          "at": 0.75,
+          "x": -0.0,
+          "y": -0.8,
+          "pose": {
+            "leftArm": 0.12,
+            "rightArm": -1.05,
+            "leftArmLength": 36,
+            "rightArmLength": 52,
+            "lean": 0.015,
+            "bodyY": -0.6,
+            "leftFootY": 0,
+            "rightFootY": 0
+          }
+        },
+        {
+          "at": 0.79166667,
+          "x": 0.207055,
+          "y": -0.772741,
+          "pose": {
+            "leftArm": 0.12,
+            "rightArm": -1.05,
+            "leftArmLength": 36,
+            "rightArmLength": 52,
+            "lean": 0.015341,
+            "bodyY": -0.579555,
+            "leftFootY": 0,
+            "rightFootY": 0
+          }
+        },
+        {
+          "at": 0.83333333,
+          "x": 0.4,
+          "y": -0.69282,
+          "pose": {
+            "leftArm": 0.12,
+            "rightArm": -1.05,
+            "leftArmLength": 36,
+            "rightArmLength": 52,
+            "lean": 0.01634,
+            "bodyY": -0.519615,
+            "leftFootY": 0,
+            "rightFootY": 0
+          }
+        },
+        {
+          "at": 0.875,
+          "x": 0.565685,
+          "y": -0.565685,
+          "pose": {
+            "leftArm": 0.12,
+            "rightArm": -1.05,
+            "leftArmLength": 36,
+            "rightArmLength": 52,
+            "lean": 0.017929,
+            "bodyY": -0.424264,
+            "leftFootY": 0,
+            "rightFootY": 0
+          }
+        },
+        {
+          "at": 0.91666667,
+          "x": 0.69282,
+          "y": -0.4,
+          "pose": {
+            "leftArm": 0.12,
+            "rightArm": -1.05,
+            "leftArmLength": 36,
+            "rightArmLength": 52,
+            "lean": 0.02,
+            "bodyY": -0.3,
+            "leftFootY": 0,
+            "rightFootY": 0
+          }
+        },
+        {
+          "at": 0.95833333,
+          "x": 0.772741,
+          "y": -0.207055,
+          "pose": {
+            "leftArm": 0.12,
+            "rightArm": -1.05,
+            "leftArmLength": 36,
+            "rightArmLength": 52,
+            "lean": 0.022412,
+            "bodyY": -0.155291,
+            "leftFootY": 0,
+            "rightFootY": 0
+          }
+        },
+        {
+          "at": 1,
+          "x": 0.8,
+          "y": 0.0,
+          "pose": {
+            "leftArm": 0.12,
+            "rightArm": -1.05,
+            "leftArmLength": 36,
+            "rightArmLength": 52,
+            "lean": 0.025,
+            "bodyY": 0.0,
+            "leftFootY": 0,
+            "rightFootY": 0
+          }
+        }
+      ],
+      "pointer": {
+        "hand": "right",
+        "idleMs": 5000
+      },
+      "keepAwake": "display"
+    }
+  ],
+  "permissions": [
+    {
+      "id": "movement",
+      "kind": "companion-activity",
+      "purpose": "Carry the pointer and keep the display awake until you stop Mouse Mover.",
+      "activities": [
+        "carry-pointer"
+      ],
+      "pointer": true,
+      "keepAwake": "display"
+    }
+  ],
+  "notices": [
+    {
+      "id": "pointer",
+      "title": "Pointer and display",
+      "text": "Mouse Mover moves your real pointer and keeps the display awake while active. Manual mouse use takes priority immediately; movement resumes after five seconds without mouse activity. Keeping the display awake continues during this pause. Ask to stop, disable the Ability, or quit Dot to end it. Installation and enablement do not start movement.",
+      "required": false
+    }
+  ]
+}

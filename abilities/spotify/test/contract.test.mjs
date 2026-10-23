@@ -124,7 +124,7 @@ test("limits broker routes, request shapes and private playlist creation", async
 test("pins public host schema and wire fixtures without a host runtime dependency", async () => {
   const lock = await json("test/host-contract/contract-lock.json");
   assert.equal(lock.apiVersion, 1);
-  assert.equal(lock.sourceCommit, "7b06a6cbafe9b526053f59c17969c12b6499e2d6");
+  assert.equal(lock.sourceCommit, "9024a2e4efa644ac97533c91a663b8a335d65a4b");
   for (const [name, hash] of Object.entries(lock.files)) {
     assert.match(name, /^(manifest\.schema\.json|protocol\.json)$/);
     const bytes = await readFile(new URL("test/host-contract/" + name, root));

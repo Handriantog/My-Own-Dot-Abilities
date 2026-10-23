@@ -9,7 +9,7 @@
     "owner": "handriantog",
     "repository": "my-own-dot-abilities"
   },
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "platforms": ["darwin-arm64"],
   "entrypoint": {
@@ -945,5 +945,14 @@
       "text": "# Spotify Ability privacy notice\n\nEffective for development version 0.1.0, October 23, 2026.\n\nThis Ability runs locally within My Own Dots. It requests Spotify playback/device\ninformation, search results and playlists to perform the commands you request.\nIt can control your player, create/edit private playlists and save library items;\nthis worker's library tools accept tracks only. The exact scopes and API routes\nare listed in [ability.json](ability.json) and shown before approval.\n\nDot sends your requested searches and actions to Spotify. Spotify handles these\nunder its [privacy policy](https://www.spotify.com/legal/privacy-policy/).\nGitHub serves the installation package and source. This worker has no analytics,\nadvertising, telemetry, background polling or additional service endpoint.\n\nThe host owns browser authorization and encrypted local credentials. The worker\nreceives neither tokens nor your Spotify password. Your public developer Client\nID is stored as per-Dot configuration. Changing it requires a new connection.\nCredentials are separate for each Dot and are excluded from portable backups.\n\nProvider results are local, owner-only UI data, retained in memory for at most\nten minutes and removed earlier on disconnect/revocation or host shutdown. They\nare not persisted into conversations, model prompts, summaries, memory,\nembeddings, logs, backups or AI speech input. This worker writes no provider\ncatalog or operation journal to disk. The host may persist generic invocation\nreceipts and opaque references to prevent duplicate actions; these contain no\nSpotify response metadata and cannot restore expired private results.\n\nYour own typed requests still follow Dot's configured chat/inference and storage\nbehavior. If you type a song title or playlist name, that user-authored text can\nbe sent to your selected AI provider and saved in your conversation. This notice\ndoes not promise that your own messages are private from the model you use.\n\nUse **Disconnect** in the selected Dot's Ability settings to clear its stored\nSpotify credentials and private results. Remove provider access on Spotify's\n[Apps page](https://www.spotify.com/account/apps/) to revoke the developer app too.\nDisconnecting does not delete playlists or liked songs already saved in Spotify.\nUse Spotify to change those. Disable is not the same as disconnect.\n\nFor source or privacy questions, contact the maintainer through the repository's\n[issue tracker](https://github.com/Handriantog/My-Own-Dot-Abilities/issues).\nNever include tokens, passwords or private Spotify data in an issue.\n",
       "required": false
     }
-  ]
+  ],
+  "icon": {
+    "background": "#1DB954",
+    "foreground": "#10231A",
+    "paths": [
+      "M4 7 C9 4 16 4 21 7 L20 9 C15 6 9 6 5 9 Z",
+      "M5 11 C10 8 16 9 20 11 L19 13 C15 11 10 10 6 13 Z",
+      "M7 15 C11 13 15 14 18 16 L17 18 C14 16 11 15 8 17 Z"
+    ]
+  }
 }

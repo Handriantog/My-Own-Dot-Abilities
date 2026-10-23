@@ -80,5 +80,13 @@ changes only as the owner authorizes.
 For the production host package check (supply the built host distribution):
 
 ```sh
-node abilities/spotify/scripts/verify_host.mjs --bundle /path/to/dot/dist/desktop --artifact dist/spotify-check/spotify-0.1.0.dot-ability.tar.gz --descriptor dist/spotify-check/spotify-0.1.0.json
+node abilities/spotify/scripts/verify_host.mjs --bundle /path/to/dot/dist/desktop --artifact dist/spotify-check/spotify-0.1.1.dot-ability.tar.gz --descriptor dist/spotify-check/spotify-0.1.1.json
 ```
+
+## Icon metadata update — development 0.1.1
+
+The package and catalog now share safe vector icon metadata. The icon-aware
+public host manifest schema is pinned to host commit
+`9024a2e4efa644ac97533c91a663b8a335d65a4b` (API 1). Earlier strict hosts reject
+this added field. Worker code, permissions and account behavior are unchanged.
+This metadata change adds no live account verification or public release claim.

@@ -7,8 +7,8 @@ This repository hosts independently developed and versioned **Abilities** for
 once in a workspace and enabled for selected Dots, with explicit permissions.
 Other developers can publish Abilities in their own repositories.
 
-**Status:** Spotify Web API and Spotify Local have independent dependency-free
-workers for the version-one Dot Ability host.
+**Status:** Mouse Mover, Spotify Web API and Spotify Local have independent
+dependency-free workers for the version-one Dot Ability host.
 There are no published Ability releases yet. The host owns permission enforcement,
 account credentials and execution; this collection owns individual workers.
 
@@ -18,6 +18,7 @@ account credentials and execution; this collection owns individual workers.
 | ---------------------------------------------- | ---------------------------------------------------- | ----------------------------------------------- |
 | [Spotify Web API](abilities/spotify/README.md) | Search, playback control, playlists, and saved songs | Packaged fixtures verified; live checks pending |
 | [Spotify Local](abilities/spotify-local/README.md) | Desktop playback, search, saved songs and playlists | Development package; core local controls live-tested |
+| [Mouse Mover](abilities/mouse-mover/README.md) | Carry the pointer and keep the display awake on request | Development package; native acceptance pending |
 
 [catalog.json](catalog.json) is the machine-readable development index. It is
 not an installer manifest and does not authorize execution or grant permissions.
@@ -63,12 +64,24 @@ See the [repository design](docs/repository-design.md) and
 
 ## Development
 
-Repository checks require Python 3.11 or newer and only its standard library:
+Repository checks use Python 3.11+ standard library; Ability tests use Node 24+:
 
 ```sh
 python3 scripts/check_repository.py
+python3 -m unittest discover -s scripts -p 'test_*.py'
+python3 abilities/spotify/scripts/check_manifest.py
+python3 abilities/spotify-local/scripts/check_manifest.py
+python3 abilities/mouse-mover/scripts/check_manifest.py
+node --test abilities/*/test/*.test.mjs
 git diff --check
 ```
+
+All three packages include safe vector icons and need the current icon-aware
+API 1 desktop host. Mouse Mover also needs companion activities, native pointer
+control and display keep-awake; see its setup guide for the exact contract pin.
+Installing and enabling Mouse Mover do not start it. An explicit text/voice
+request starts it, manual mouse use yields immediately, and movement resumes
+after five seconds of mouse inactivity. There are no public releases.
 
 Use feature branches and repository-local `.worktrees/`. Changes to `main` go
 through pull requests with passing **Repository checks**, an up-to-date branch,

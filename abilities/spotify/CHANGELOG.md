@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased — 0.1.1 source
+
+- Add a package-owned vector icon for the Ability list and detail view.
+- Require a desktop host with the optional icon manifest field; account access,
+  permissions and playback/library behavior are unchanged.
+
+
 ## Unreleased — 0.1.0 source
 
 - Add eleven owner-only search, playback, private-playlist and library tools.
