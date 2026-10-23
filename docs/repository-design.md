@@ -46,8 +46,9 @@ into a JavaScript package structure.
 `catalog.json` is a repository index with `catalogVersion: 1`. Entries contain a
 unique `id`, display `name`, exact `abilities/<id>` path, `status`, latest published
 `version` (null before release), `license`, and safe vector `icon` metadata.
-Icons must match each package manifest, with hex colors and bounded SVG path
-geometry in a 24 × 24 view box. Raw markup and network artwork are rejected.
+Icons must match each package manifest, with hex colors, finite coordinates,
+and bounded path count, length and syntax in a 24 × 24 view box. Coordinate
+magnitude is not bounded. Raw markup and network artwork are rejected.
 Status is `planned`, `development`,
 or `released`. This index must not be used as an execution manifest or proof that
 an Ability is trusted. Installable package manifests follow the host's public API contract; Spotify

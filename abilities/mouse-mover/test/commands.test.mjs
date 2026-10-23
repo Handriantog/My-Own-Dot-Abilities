@@ -9,7 +9,6 @@ for (const [tool, status, text] of [
   ["status", "paused", "Mouse Mover is paused while you use the mouse. It resumes after five seconds of inactivity."],
   ["status", "inactive", "Mouse Mover is stopped."],
   ["stop", "inactive", "Mouse Mover is stopped."],
-  ["stop", "inactive", "Mouse Mover is stopped."],
 ]) test(`${tool} requests the declared activity and reports ${status}`, async (t) => {
   const host = fakeHost(dispatchTool);
   t.after(host.close);
@@ -62,4 +61,24 @@ test("lost host or malformed reply never claims successful activation", async ()
   ]) assert.deepEqual(await dispatchTool(invocation.params, {
     signal: new AbortController().signal, capability,
   }), { status: "uncertain" });
+});
+
+
+test("repeated stop stays inactive with shared host state", async () => {
+  let status = "running";
+  const transitions = [];
+  const host = {
+    signal: new AbortController().signal,
+    capability: async (request) => {
+      assert.deepEqual(request, { kind: "companion-activity", ruleId: "movement", command: { action: "stop", activityId: "carry-pointer" } });
+      transitions.push(status);
+      status = "inactive";
+      return { ok: true, kind: "companion-activity", status };
+    },
+  };
+  for (let call = 0; call < 2; call++) {
+    const result = await dispatchTool({ tool: "stop", arguments: {}, settings: {} }, host);
+    assert.deepEqual(result, { status: "success", owner: { kind: "text", text: "Mouse Mover is stopped." } });
+  }
+  assert.deepEqual(transitions, ["running", "inactive"]);
 });
