@@ -24,9 +24,11 @@ See [quota modes](https://developer.spotify.com/documentation/web-api/concepts/q
 
 3. Add the Spotify account you intend to use to the app's allowed users if the
    dashboard requires it.
-4. Open **Abilities** in the sidebar and review the released package’s identity,
-   source revision, access and storage paths before choosing **Install**. Enable
-   the workspace master switch, then select Spotify in the intended Dot’s settings.
+4. Open **Abilities** in the sidebar and select the released Spotify entry.
+   Alternatively, use **+ (Add Ability)** to review its GitHub release descriptor
+   URL. Choose **Install** in the detail header, review the package’s identity,
+   source revision, access and storage paths, then approve installation. Choose
+   **Enable**, then select Spotify in the intended Dot’s settings.
 5. Enter the public **Client ID** in that Dot's Spotify settings. Never enter a
    client secret, Spotify password, access token or refresh token.
 6. Select **Connect account**. Review Spotify's consent in your system browser

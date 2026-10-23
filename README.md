@@ -22,6 +22,23 @@ account credentials and execution; this collection owns individual workers.
 [catalog.json](catalog.json) is the machine-readable development index. It is
 not an installer manifest and does not authorize execution or grant permissions.
 
+## Browse and install
+
+In Dot, open **Abilities** below Memory. Search installed Abilities and the GitHub
+collection, then select one to read its full README and permissions. Unreleased
+entries show their development status; they have no collection Install action.
+
+For a local development package, use **+ (Add Ability) → Choose local Ability…**.
+For a published package from another GitHub repository, use the same menu and
+enter its release descriptor URL. Open **Install** in the detail header, review
+the actual access and storage paths, then approve installation. New installs stay
+disabled. Choose **Enable**, then assign individual Dots or **Apply to all Dot**.
+
+**Disable** preserves per-Dot choices. **Uninstall** confirms removal of the
+selected version from all Dots and keeps its private files. Other separately
+approved versions remain installed. See each Ability's setup guide for OS or
+account requirements.
+
 ## Repository layout
 
 ```text
