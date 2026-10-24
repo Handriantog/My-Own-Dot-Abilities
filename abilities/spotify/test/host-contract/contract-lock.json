@@ -1,9 +1,9 @@
 {
   "apiVersion": 1,
   "sourceRepository": "https://github.com/Handriantog/My-Own-Dots",
-  "sourceCommit": "9024a2e4efa644ac97533c91a663b8a335d65a4b",
+  "sourceCommit": "da68cc2101e8d44d0b329037a9f50bc183ebc466",
   "files": {
-    "manifest.schema.json": "63da726d58296249116d64b7dbc6a80eb356cdeff8ca33e56b6d70b9cfd397c5",
+    "manifest.schema.json": "0f368d487a7cf2564add21acf7f18d156205954be4236da6ba6122342fd4da72",
     "protocol.json": "e11bbcc139c2cd77fe9658d1fb20950ffc24441933fe342a603fd019d49366ef"
   }
 }

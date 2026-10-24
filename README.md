@@ -80,7 +80,8 @@ All three packages include safe vector icons and need the current icon-aware
 API 1 desktop host. Mouse Mover also needs companion activities, native pointer
 control and display keep-awake; see its setup guide for the exact contract pin.
 Installing and enabling Mouse Mover do not start it. An explicit text/voice
-request starts it, manual mouse use yields immediately, and movement resumes
+request starts a pickup, descent and walk along the usable display floor. Manual
+mouse use yields immediately, and movement resumes
 after five seconds of mouse inactivity. There are no public releases.
 
 Use feature branches and repository-local `.worktrees/`. Changes to `main` go

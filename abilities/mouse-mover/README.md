@@ -8,7 +8,8 @@ desktop with companion activities on macOS 26 Apple Silicon.
 See [setup](SETUP.md) and [verification](VERIFICATION.md).
 
 Your Dot reaches for the pointer with its right plush hand, then carries it on a
-gentle closed path. The cursor follows the rendered hand.
+smooth descent to the usable screen floor, then walks left and right. The cursor
+follows the rendered hand, clear of the Dock.
 
 Manual mouse use takes priority immediately. Movement resumes after five seconds
 without mouse activity. The display and system stay awake during this pause.
@@ -18,12 +19,14 @@ work do not start it; only an explicit owner text or voice request can.
 
 ## Development
 
-Version 0.1.0 uses API 1 host contract commit
-`9024a2e4efa644ac97533c91a663b8a335d65a4b` or later, including companion activities,
+Version 0.1.1 uses API 1 host contract commit
+`da68cc2101e8d44d0b329037a9f50bc183ebc466` or later, including companion activities,
 pointer control and display keep-awake. Older strict API 1 hosts reject these
 fields; there is no published desktop version floor yet.
-The package owns the carrying pose, 1.6-second approach and 24-second loop across
-160 × 96 logical pixels. See the [manifest](ability.json) for the exact definition.
+The package owns the carrying pose and 1.6-second approach. It requests a
+2.4-second descent and floor walking at up to 66 logical pixels per second. The
+host supplies normal grounded gait and smooth turns; the 24-second pose loop
+does not restart the route. See the [manifest](ability.json) for the exact definition.
 
 Node 24+ and Python 3.11+; no dependencies or installation scripts. From the root:
 

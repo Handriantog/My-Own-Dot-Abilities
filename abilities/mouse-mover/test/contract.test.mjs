@@ -25,7 +25,10 @@ test("requires explicit interactive text/voice tools and only the pointer/displa
   assert.equal(a.keepAwake, "display");
   assert.equal(a.loop, true);
   assert.ok(a.approachMs >= 1000 && a.durationMs >= 10000);
-  assert.ok(a.keyframes.length >= 16 && a.keyframes.length <= 32);
+  assert.equal(a.keyframes.length, 2);
+  assert.deepEqual(a.motion, {kind:"floor-walk",speed:66,descendMs:2400});
+  assert.equal(a.approachMs,1600);
+  assert.equal(a.durationMs,24000);
   assert.equal(a.keyframes[0].at, 0);
   assert.equal(a.keyframes.at(-1).at, 1);
   const { at: _first, ...first } = a.keyframes[0];

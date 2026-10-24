@@ -47,7 +47,7 @@ def validate(root=ROOT):
     require(a["pointer"] == {"hand": "right", "idleMs": 5000} and a["keepAwake"] == "display", "Wrong pointer/awake declaration")
     require(type(a["durationMs"]) is int and number(a["durationMs"], 1000, 120000), "Invalid duration")
     require(type(a["approachMs"]) is int and number(a["approachMs"], 250, 10000), "Invalid approach")
-    require(set(a["motion"]) == {"width", "height"} and number(a["motion"]["width"], 0, 1200) and number(a["motion"]["height"], 0, 800), "Invalid motion bounds")
+    require(a["motion"] == {"kind": "floor-walk", "speed": 66, "descendMs": 2400}, "Invalid floor motion")
     frames = a["keyframes"]
     require(2 <= len(frames) <= 32 and frames[0]["at"] == 0 and frames[-1]["at"] == 1, "Invalid keyframes")
     previous = -1
@@ -74,4 +74,4 @@ if __name__ == "__main__":
     except (ValueError, TypeError, KeyError, OSError, IndexError):
         print("Mouse Mover manifest checks failed.", file=sys.stderr)
         sys.exit(1)
-    print("Mouse Mover manifest checks passed: interactive tools, exact pointer/display grant, closed bounded path")
+    print("Mouse Mover manifest checks passed: interactive tools, exact pointer/display grant, bounded floor walk")
