@@ -70,3 +70,11 @@ permissions. See the host's
 for exact coverage and remaining limits. Real microphone-to-Spotify acceptance,
 other playback controls, unsupported locales/platforms and Web API account
 verification remain separate; no public Ability release has been published.
+
+## Icon metadata update — development 0.1.1
+
+The package and catalog now share safe vector icon metadata. The icon-aware
+public host manifest schema is pinned to host commit
+`9024a2e4efa644ac97533c91a663b8a335d65a4b` (API 1). Earlier strict hosts reject
+this added field. Worker code, permissions and account behavior are unchanged.
+This metadata change adds no live account verification or public release claim.

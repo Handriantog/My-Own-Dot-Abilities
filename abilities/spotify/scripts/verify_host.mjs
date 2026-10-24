@@ -35,7 +35,7 @@ try {
     descriptorUrl:
       "https://github.com/handriantog/my-own-dot-abilities/releases/download/" +
       encodeURIComponent(descriptor.releaseTag) +
-      "/spotify-0.1.0.json",
+      "/" + descriptor.asset.name.replace(/\.dot-ability\.tar\.gz$/, ".json"),
     archiveUrl:
       "https://api.github.com/repos/handriantog/my-own-dot-abilities/releases/assets/" +
       descriptor.asset.id,

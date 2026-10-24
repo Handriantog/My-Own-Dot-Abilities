@@ -1,0 +1,14 @@
+{
+  "name": "dot-ability-mouse-mover",
+  "version": "0.1.1",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "check": "python3 scripts/check_manifest.py"
+  }
+}

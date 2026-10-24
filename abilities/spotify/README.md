@@ -59,3 +59,9 @@ ownership, expiry and account/consent binding before passing private data.
 
 Original source is [MIT](LICENSE). No third-party runtime code or audio is bundled.
 This independent project is not sponsored or endorsed by Spotify.
+
+Version 0.1.1 adds vector icon metadata. Use the current My Own Dots desktop
+with icon-aware API 1 manifests (host contract commit
+`9024a2e4efa644ac97533c91a663b8a335d65a4b` or later). Earlier strict API 1 hosts
+reject this optional field. No public release is available; account behavior and
+permissions are unchanged.
