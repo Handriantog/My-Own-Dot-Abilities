@@ -45,3 +45,32 @@ These checks do not establish real pointer alignment, live multi-monitor behavio
 macOS consent attribution, hardware sleep/monitor behavior, microphone acceptance
 or account behavior. Nothing was installed into the owner's app, merged,
 published or released by these verification steps.
+
+## Mouse Mover 0.1.1 floor walking
+
+The newer development package is built from clean collection commit
+`4d70173e8c3999ab392827bc923409cbb4212a56`. Its archive SHA-256 is
+`5b8edeb70de232ae355d703d61046123582535e6369f7c1cc057f26362a6a934`;
+`dist/floor-walk-source/` holds its descriptor and archive. The host controller
+verified all nine allowlisted files against the source commit, matching digest
+and `dirty:false` inventory. The prior Spotify artifacts above are unchanged.
+
+The manifest selects the generic floor-walk host mode: 2,400 ms descent,
+66 logical pixels/second maximum, normal walking gait and eased turns, with the
+same right-hand carry pose, 1,600 ms approach, five-second idle resume and display
+keep-awake. Worker code, grants and activation rules are unchanged. Existing
+authored paths remain supported by the host. All 164 collection tests, three
+repository tests and manifest/repository checks pass.
+
+The production host seals and runs this exact archive. Host source `f0df4cf`
+passes 2,387 tests with one existing certificate-identity skip, 613 macOS
+acceptance tests plus 28 native probes, format/lint/types/build and speech checks.
+The actual-rig preview covers 1,954 samples over 65.1 seconds, 1,662 simulated
+pointer moves, descent/walking/turns/pause/resume/stop, no usable-area overflow,
+maximum rendered-palm error `1.6077746776921858e-13` logical pixels and no retained
+sleep assertion. Pointerless preview also passes.
+
+The owner confirmed the preceding 0.1.0 live cursor movement and idle resumption
+after an existing macOS Accessibility entry refresh. The new floor-walk evidence
+above is simulated; hardware sleep, mixed-display and final-app microphone
+acceptance remain separate. No public release or merge is performed.
